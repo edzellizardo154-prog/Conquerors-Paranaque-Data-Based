@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        VIP Registration | Conquerors Paranaque
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="vip-registration.css"
+    >
+
+</head>
+
+
+<body>
+
+    <main class="vip-page">
+
+
+        <!-- =========================================
+             LEFT / MAIN REGISTRATION
+        ========================================== -->
+
+        <section class="registration-container">
+
+            <a
+                href="index.html"
+                class="back-button"
+            >
+                ← BACK TO DASHBOARD
+            </a>
+
+
+            <section class="form-card">
+
+                <header class="form-header">
+
+                    <div class="logo-circle">
+
+                        <strong>
+                            CONQUERORS
+                        </strong>
+
+                        <span>
+                            PARANAQUE
+                        </span>
+
+                        <small>
+                            CITY
+                        </small>
+
+                    </div>
+
+
+                    <div class="form-title">
+
+                        <h1>
+                            VIP FORM
+                        </h1>
+
+                        <h2>
+                            FOR FIRST TIMERS
+                        </h2>
+
+                    </div>
+
+                </header>
+
+
+                <div class="welcome">
+                    Welcome to Conquerors!
+                </div>
+
+
+                <form id="vipForm">
+
+                    <!-- PERSONAL INFORMATION -->
+
+                    <section class="form-section">
+
+                        <h3>
+                            WE WANT TO KNOW YOU!
+                        </h3>
+
+
+                        <div class="form-group">
+
+                            <label for="completeName">
+                                Complete Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="completeName"
+                                name="completeName"
+                                placeholder="Enter complete name"
+                                autocomplete="name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="homeAddress">
+                                Home Address
+                            </label>
+
+                            <input
+                                type="text"
+                                id="homeAddress"
+                                name="homeAddress"
+                                placeholder="Enter home address"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="city">
+                                City
+                            </label>
+
+                            <input
+                                type="text"
+                                id="city"
+                                name="city"
+                                value="Parañaque"
+                            >
+
+                        </div>
+
+
+                        <div class="two-column">
+
+                            <div class="form-group">
+
+                                <label for="contactNo">
+                                    Contact No.
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="contactNo"
+                                    name="contactNo"
+                                    placeholder="09XXXXXXXXX"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="gender">
+                                    Gender
+                                </label>
+
+                                <select
+                                    id="gender"
+                                    name="gender"
+                                    required
+                                >
+
+                                    <option value="">
+                                        Select Gender
+                                    </option>
+
+                                    <option value="Male">
+                                        Male
+                                    </option>
+
+                                    <option value="Female">
+                                        Female
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="two-column">
+
+                            <div class="form-group">
+
+                                <label for="birthday">
+                                    Birthday
+                                </label>
+
+                                <input
+                                    type="date"
+                                    id="birthday"
+                                    name="birthday"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="age">
+                                    Age
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="age"
+                                    name="age"
+                                    min="1"
+                                    max="120"
+                                    placeholder="Enter age"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+
+                    <!-- WHO INVITED YOU -->
+
+                    <section class="form-section">
+
+                        <h3>
+                            WHO INVITED YOU?
+                        </h3>
+
+
+                        <div class="form-group">
+
+                            <label for="invitedBy">
+                                Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="invitedBy"
+                                name="invitedBy"
+                                placeholder="Name of person who invited you"
+                            >
+
+                        </div>
+
+
+                        <div class="two-column">
+
+                            <div class="form-group">
+
+                                <label for="celebration">
+                                    Celebration
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="celebration"
+                                    name="celebration"
+                                    placeholder="e.g. CWC"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="celebrationDate">
+                                    Date
+                                </label>
+
+                                <input
+                                    type="date"
+                                    id="celebrationDate"
+                                    name="celebrationDate"
+                                >
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+
+                    <!-- DECISION -->
+
+                    <section class="form-section">
+
+                        <h3>
+                            YOUR DECISION TODAY?
+                        </h3>
+
+
+                        <div class="checkbox-group">
+
+                            <label class="checkbox-option">
+
+                                <input
+                                    type="checkbox"
+                                    name="decision"
+                                    value="Accepted Jesus as my Lord & Savior"
+                                >
+
+                                <span>
+                                    Accepted Jesus as my Lord & Savior.
+                                </span>
+
+                            </label>
+
+
+                            <label class="checkbox-option">
+
+                                <input
+                                    type="checkbox"
+                                    name="decision"
+                                    value="Recommitted my life to Jesus"
+                                >
+
+                                <span>
+                                    Recommitted my life to Jesus.
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </section>
+
+
+
+                    <div class="belong">
+                        You Belong Here!
+                    </div>
+
+
+
+                    <!-- ALLOCATION -->
+
+                    <section class="form-section allocation">
+
+                        <div class="allocation-title">
+
+                            <h3>
+                                ALLOCATION
+                            </h3>
+
+                            <span>
+                                FOR VIP TEAM ONLY
+                            </span>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="consolidatedBy">
+                                Consolidated by
+                            </label>
+
+                            <input
+                                type="text"
+                                id="consolidatedBy"
+                                name="consolidatedBy"
+                                placeholder="VIP Team member"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="networkLeader">
+                                Network Leader
+                            </label>
+
+                            <input
+                                type="text"
+                                id="networkLeader"
+                                name="networkLeader"
+                                placeholder="Network Leader"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="lifeGroupLeader">
+                                Life Group Leader
+                            </label>
+
+                            <input
+                                type="text"
+                                id="lifeGroupLeader"
+                                name="lifeGroupLeader"
+                                placeholder="Life Group Leader"
+                            >
+
+                        </div>
+
+                    </section>
+
+
+
+                    <button
+                        type="submit"
+                        class="submit-button"
+                    >
+
+                        <span>
+                            SUBMIT VIP REGISTRATION
+                        </span>
+
+                        <span>
+                            →
+                        </span>
+
+                    </button>
+
+                </form>
+
+            </section>
+
+        </section>
+
+
+
+        <!-- =========================================
+             RIGHT / SEARCH DISCIPLE
+        ========================================== -->
+
+        <aside class="disciple-panel">
+
+            <div class="disciple-panel-header">
+
+                <span class="eyebrow">
+                    VIP DATABASE
+                </span>
+
+                <h2>
+                    SEARCH DISCIPLE NAME
+                </h2>
+
+                <p>
+                    Search a registered VIP and manage
+                    their timer history.
+                </p>
+
+            </div>
+
+
+            <div class="search-wrapper">
+
+                <input
+                    type="search"
+                    id="discipleSearch"
+                    placeholder="Search disciple name..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <div
+                id="discipleResults"
+                class="disciple-results"
+            >
+
+                <div class="empty-search">
+
+                    <span>
+                        🔎
+                    </span>
+
+                    <p>
+                        Search a disciple name
+                    </p>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+    </main>
+
+
+<!-- =========================================================
+     DISCIPLE PROFILE MODAL
+========================================================= -->
+
+<div
+    id="discipleModal"
+    class="vip-modal hidden"
+>
+
+    <div class="vip-modal-card">
+
+        <button
+            type="button"
+            id="closeDiscipleModal"
+            class="modal-close"
+        >
+            ×
+        </button>
+
+
+        <span class="eyebrow">
+            VIP DISCIPLE RECORD
+        </span>
+
+
+        <h2 id="modalDiscipleName">
+            DISCIPLE NAME
+        </h2>
+
+
+        <!-- =================================================
+             TIMER HISTORY
+        ================================================== -->
+
+        <div
+            id="modalTimerHistory"
+            class="timer-history"
+        >
+        </div>
+
+
+        <!-- =================================================
+             ACTION BUTTONS
+        ================================================== -->
+
+        <div class="modal-actions">
+
+            <button
+                type="button"
+                id="reportTimerButton"
+                class="action-primary"
+            >
+                + REPORT TIMER
+            </button>
+
+
+            <button
+                type="button"
+                id="viewInfoButton"
+                class="action-secondary"
+            >
+                VIEW ALL INFO
+            </button>
+
+        </div>
+
+
+        <!-- =================================================
+             FULL INFORMATION
+        ================================================== -->
+
+        <div
+            id="modalFullInfo"
+            class="full-info hidden"
+        >
+        </div>
+
+
+        <!-- =================================================
+             DISCIPLE ACTIONS
+        ================================================== -->
+
+        <div class="danger-actions">
+
+            <button
+                type="button"
+                id="editDiscipleButton"
+                class="edit-button"
+            >
+                EDIT INFORMATION
+            </button>
+
+
+            <button
+                type="button"
+                id="deleteDiscipleButton"
+                class="delete-button"
+            >
+                DELETE RECORD
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     ADD / REPORT TIMER MODAL
+========================================================= -->
+
+<div
+    id="timerModal"
+    class="vip-modal hidden"
+>
+
+    <div class="vip-modal-card timer-modal-card">
+
+        <button
+            type="button"
+            id="closeTimerModal"
+            class="modal-close"
+        >
+            ×
+        </button>
+
+
+        <span class="eyebrow">
+            TIMER REPORT
+        </span>
+
+
+        <h2>
+            REPORT TIMER
+        </h2>
+
+
+        <p>
+            Add or update the timer date for this disciple.
+        </p>
+
+
+        <strong
+            id="timerDiscipleName"
+            class="timer-disciple-name"
+        >
+            DISCIPLE NAME
+        </strong>
+
+
+        <form id="timerForm">
+
+            <div class="form-group">
+
+                <label for="timerType">
+                    TIMER TYPE
+                </label>
+
+                <select
+                    id="timerType"
+                    required
+                >
+
+                    <option value="">
+                        Select Timer
+                    </option>
+
+                    <option value="2nd Timer">
+                        2nd Timer
+                    </option>
+
+                    <option value="3rd Timer">
+                        3rd Timer
+                    </option>
+
+                    <option value="4th Timer">
+                        4th Timer
+                    </option>
+
+                    <option value="New NTH Timer">
+                        New NTH Timer
+                    </option>
+
+                    <option value="NT Timer">
+                        NT Timer
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="timerDate">
+                    DATE
+                </label>
+
+                <input
+                    type="date"
+                    id="timerDate"
+                    required
+                >
+
+            </div>
+
+
+            <div class="timer-form-actions">
+
+                <button
+                    type="button"
+                    id="cancelTimerButton"
+                    class="action-secondary"
+                >
+                    CANCEL
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="action-primary"
+                >
+                    SAVE TIMER
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     EDIT TIMER DATE MODAL
+========================================================= -->
+
+<div
+    id="editTimerModal"
+    class="vip-modal hidden"
+>
+
+    <div class="vip-modal-card timer-modal-card">
+
+        <button
+            type="button"
+            id="closeEditTimerModal"
+            class="modal-close"
+        >
+            ×
+        </button>
+
+
+        <span class="eyebrow">
+            EDIT TIMER DATE
+        </span>
+
+
+        <h2 id="editTimerTitle">
+            EDIT TIMER
+        </h2>
+
+
+        <p>
+            Correct the date below and save your changes.
+        </p>
+
+
+        <form id="editTimerForm">
+
+            <div class="form-group">
+
+                <label for="editTimerDate">
+                    TIMER DATE
+                </label>
+
+                <input
+                    type="date"
+                    id="editTimerDate"
+                    required
+                >
+
+            </div>
+
+
+            <div class="timer-form-actions">
+
+                <button
+                    type="button"
+                    id="cancelEditTimerButton"
+                    class="action-secondary"
+                >
+                    CANCEL
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="action-primary"
+                >
+                    SAVE DATE
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+    <script src="vip-registration.js"></script>
+
+</body>
+
+</html>

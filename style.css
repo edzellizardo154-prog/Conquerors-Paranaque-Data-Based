@@ -1,0 +1,309 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: #ffffff;
+
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(255, 122, 0, 0.18),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 85%,
+            rgba(0, 126, 255, 0.20),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #041326 0%,
+            #062348 50%,
+            #04182f 100%
+        );
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px 20px;
+
+    overflow-x: hidden;
+}
+
+.dashboard {
+    width: 100%;
+    max-width: 1100px;
+    text-align: center;
+}
+
+.header {
+    margin-bottom: 48px;
+    animation: fadeDown 0.7s ease;
+}
+
+.brand-line {
+    width: 80px;
+    height: 5px;
+
+    margin: 0 auto 22px;
+
+    border-radius: 50px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff7a00,
+            #087cff
+        );
+}
+
+.header h1 {
+    font-size: clamp(30px, 5vw, 56px);
+
+    line-height: 1.1;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+.header h1 span {
+    color: #ff7a00;
+}
+
+.header p {
+    margin-top: 16px;
+
+    color: #9db2ca;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    letter-spacing: 3px;
+}
+
+.menu {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 18px;
+}
+
+.capsule {
+    position: relative;
+
+    width: min(900px, 95%);
+
+    min-height: 78px;
+
+    padding:
+        18px
+        65px
+        18px
+        32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 999px;
+
+    border:
+        2px solid
+        rgba(255, 122, 0, 0.8);
+
+    background:
+        rgba(255, 255, 255, 0.055);
+
+    backdrop-filter: blur(15px);
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.capsule:hover {
+    transform:
+        translateY(-4px)
+        scale(1.015);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255, 122, 0, 0.95),
+            rgba(8, 124, 255, 0.95)
+        );
+
+    border-color: #ffffff;
+
+    box-shadow:
+        0 15px 35px
+        rgba(0, 0, 0, 0.35);
+}
+
+.dot {
+    position: absolute;
+
+    left: 30px;
+
+    width: 11px;
+    height: 11px;
+
+    border-radius: 50%;
+
+    background: #ff7a00;
+
+    box-shadow:
+        0 0 8px #ff7a00,
+        0 0 18px
+        rgba(255, 122, 0, 0.65);
+}
+
+.capsule-text {
+    font-size:
+        clamp(13px, 2vw, 19px);
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    text-align: center;
+
+    line-height: 1.35;
+}
+
+.arrow {
+    position: absolute;
+
+    right: 28px;
+
+    font-size: 25px;
+
+    color: #ff7a00;
+
+    transition: 0.25s ease;
+}
+
+.capsule:hover .arrow {
+    color: #ffffff;
+    transform: translateX(5px);
+}
+
+footer {
+    margin-top: 50px;
+
+    color: #7188a3;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    line-height: 1.8;
+}
+
+.footer-line {
+    width: 60px;
+    height: 2px;
+
+    margin: 0 auto 15px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff7a00,
+            #087cff
+        );
+
+    border-radius: 20px;
+}
+
+footer p {
+    color: #9db2ca;
+    font-weight: 700;
+}
+
+@keyframes fadeDown {
+
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 30px 12px;
+    }
+
+    .header {
+        margin-bottom: 32px;
+    }
+
+    .header h1 {
+        font-size: 28px;
+    }
+
+    .header p {
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+
+    .capsule {
+        width: 100%;
+        min-height: 68px;
+
+        padding:
+            15px
+            48px
+            15px
+            45px;
+    }
+
+    .dot {
+        left: 22px;
+
+        width: 8px;
+        height: 8px;
+    }
+
+    .arrow {
+        right: 20px;
+        font-size: 20px;
+    }
+
+    .capsule-text {
+        font-size: 12px;
+    }
+}

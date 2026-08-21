@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        CLGWC | Conquerors Paranaque
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="clgwc.css"
+    >
+
+</head>
+
+
+<body>
+
+    <main class="page-container">
+
+
+        <!-- =========================
+             TOP BAR
+        ========================== -->
+
+        <header class="topbar">
+
+            <a
+                href="index.html"
+                class="back-button"
+            >
+                ← DASHBOARD
+            </a>
+
+
+            <div class="page-brand">
+
+                <span>
+                    CONQUERORS PARANAQUE
+                </span>
+
+                <strong>
+                    DATA BASED
+                </strong>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =========================
+             PAGE TITLE
+        ========================== -->
+
+        <section class="page-heading">
+
+            <div class="orange-line"></div>
+
+            <h1>
+                CONQUERORS LIFEGROUP
+                WORSHIP CELEBRATIONS
+            </h1>
+
+            <p>
+                MONITORING AND TRACKING
+            </p>
+
+        </section>
+
+
+
+        <!-- =========================
+             CELEBRATION SELECTOR
+        ========================== -->
+
+        <section class="control-panel">
+
+
+            <div class="control-box">
+
+                <label for="celebrationDate">
+                    CELEBRATION
+                </label>
+
+                <select id="celebrationDate"></select>
+
+            </div>
+
+
+            <div class="control-box search-box">
+
+                <label for="leaderSearch">
+                    SEARCH NETWORK LEADER
+                </label>
+
+                <input
+                    type="search"
+                    id="leaderSearch"
+                    placeholder="Search leader name..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <button
+                id="viewAllButton"
+                class="secondary-button"
+            >
+                VIEW THE DATA
+            </button>
+
+        </section>
+
+
+
+        <!-- =========================
+             CELEBRATION INFO
+        ========================== -->
+
+        <section
+            id="celebrationInfo"
+            class="celebration-info"
+        >
+
+        </section>
+
+
+
+        <!-- =========================
+             SEARCH RESULTS
+        ========================== -->
+
+        <section
+            id="leaderResults"
+            class="leader-results"
+        >
+
+        </section>
+
+
+
+        <!-- =========================
+             COMPLETE DATA
+        ========================== -->
+
+        <section
+            id="dataSection"
+            class="data-section hidden"
+        >
+
+            <div class="section-header">
+
+                <div>
+
+                    <span class="eyebrow">
+                        COMPLETE MONITORING
+                    </span>
+
+                    <h2 id="dataTitle">
+                        AUGUST 16 CELEBRATION
+                    </h2>
+
+                </div>
+
+
+                <button
+                    id="closeDataButton"
+                    class="close-button"
+                >
+                    CLOSE
+                </button>
+
+            </div>
+
+
+            <div
+                id="dataSummary"
+                class="summary-grid"
+            >
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                NETWORK LEADER
+                            </th>
+
+                            <th>
+                                STATUS
+                            </th>
+
+                            <th>
+                                1st
+                            </th>
+
+                            <th>
+                                2nd
+                            </th>
+
+                            <th>
+                                3rd
+                            </th>
+
+                            <th>
+                                4th
+                            </th>
+
+                            <th>
+                                NEW NTH
+                            </th>
+
+                            <th>
+                                Nth
+                            </th>
+
+                            <th>
+                                NL
+                            </th>
+
+                            <th>
+                                TOTAL
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="dataTableBody">
+
+                    </tbody>
+
+
+                    <tfoot id="dataTableFooter">
+
+                    </tfoot>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         REPORT MODAL
+    ========================== -->
+
+    <div
+        id="reportModal"
+        class="modal hidden"
+    >
+
+        <div class="modal-card">
+
+
+            <button
+                id="closeModal"
+                class="modal-close"
+            >
+                ×
+            </button>
+
+
+            <div class="modal-header">
+
+                <span class="eyebrow">
+                    NETWORK LEADER REPORT
+                </span>
+
+                <h2 id="reportLeaderName">
+                    LEADER NAME
+                </h2>
+
+                <p id="reportCelebrationName">
+                    AUGUST 16 CELEBRATION
+                </p>
+
+            </div>
+
+
+
+            <div
+                id="reportWindow"
+                class="report-window"
+            >
+
+            </div>
+
+
+
+            <form id="reportForm">
+
+
+                <div class="report-field">
+
+                    <label>
+                        1st
+                    </label>
+
+                    <textarea
+                        id="firstNames"
+                        placeholder="Enter names, one per line"
+                    ></textarea>
+
+                </div>
+
+
+                <div class="report-field">
+
+                    <label>
+                        2nd
+                    </label>
+
+                    <textarea
+                        id="secondNames"
+                        placeholder="Enter names, one per line"
+                    ></textarea>
+
+                </div>
+
+
+                <div class="report-field">
+
+                    <label>
+                        3rd
+                    </label>
+
+                    <textarea
+                        id="thirdNames"
+                        placeholder="Enter names, one per line"
+                    ></textarea>
+
+                </div>
+
+
+                <div class="report-field">
+
+                    <label>
+                        4th
+                    </label>
+
+                    <textarea
+                        id="fourthNames"
+                        placeholder="Enter names, one per line"
+                    ></textarea>
+
+                </div>
+
+
+                <div class="report-field">
+
+                    <label>
+                        NEW NTH
+                    </label>
+
+                    <textarea
+                        id="newNthNames"
+                        placeholder="Enter names, one per line"
+                    ></textarea>
+
+                </div>
+
+                <div class="report-field">
+
+                    <label>
+                         NTH
+                    </label>
+
+                    <textarea
+                        id="ntNames"
+                        placeholder="Enter names, one per line"
+                    ></textarea>
+
+                </div>
+
+
+                <div class="report-field">
+
+                    <label>
+                        NL
+                    </label>
+
+                    <textarea
+                        id="nlNames"
+                        placeholder="Enter names, one per line"
+                    ></textarea>
+
+                </div>
+
+
+                <div
+                    id="liveTotal"
+                    class="live-total"
+                >
+                    TOTAL ATTENDANCE: 0
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="submit-report"
+                >
+                    SAVE REPORT
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <script src="clgwc.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,1754 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   BODY
+========================================= */
+
+body {
+
+    min-height: 100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(255, 122, 0, 0.16),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 90% 90%,
+            rgba(8, 124, 255, 0.18),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            135deg,
+            #041326,
+            #062348,
+            #04182f
+        );
+
+    padding:
+        30px
+        20px
+        70px;
+
+    color: #172033;
+}
+
+
+/* =========================================
+   CONTAINER
+========================================= */
+
+.registration-container {
+
+    width: 100%;
+
+    max-width: 900px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   BACK BUTTON
+========================================= */
+
+.back-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-bottom: 20px;
+
+    padding:
+        11px
+        20px;
+
+    color: #ffffff;
+
+    background:
+        rgba(255,255,255,0.07);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.18);
+
+    border-radius: 999px;
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    transition: 0.25s ease;
+}
+
+
+.back-button:hover {
+
+    background: #ff7a00;
+
+    border-color: #ff7a00;
+
+    transform:
+        translateX(-3px);
+}
+
+
+/* =========================================
+   FORM CARD
+========================================= */
+
+.form-card {
+
+    width: 100%;
+
+    background: #ffffff;
+
+    border-radius: 28px;
+
+    padding: 45px;
+
+    box-shadow:
+        0 30px 80px
+        rgba(0,0,0,0.38);
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   FORM HEADER
+========================================= */
+
+.form-header {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 24px;
+
+    margin-bottom: 28px;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   LOGO
+========================================= */
+
+.logo-circle {
+
+    width: 105px;
+
+    height: 105px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    color: #ffffff;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #087cff 0%,
+            #087cff 45%,
+            #ff7a00 100%
+        );
+
+    box-shadow:
+        0 8px 25px
+        rgba(8,124,255,0.25);
+
+    text-transform: uppercase;
+}
+
+
+.logo-circle strong {
+
+    font-size: 12px;
+
+    line-height: 1.1;
+}
+
+
+.logo-circle span {
+
+    margin-top: 4px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+
+.logo-circle small {
+
+    font-size: 8px;
+
+    margin-top: 2px;
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+.form-title h1 {
+
+    font-size: 50px;
+
+    line-height: 0.9;
+
+    color: #111827;
+
+    font-weight: 950;
+
+    letter-spacing: -1px;
+}
+
+
+.form-title h2 {
+
+    margin-top: 10px;
+
+    color: #ff7a00;
+
+    font-size: 19px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================
+   WELCOME
+========================================= */
+
+.welcome {
+
+    text-align: center;
+
+    margin-bottom: 38px;
+
+    font-family:
+        "Brush Script MT",
+        "Segoe Script",
+        cursive;
+
+    font-size: 38px;
+
+    font-weight: 700;
+
+    color: #111111;
+}
+
+
+/* =========================================
+   SECTION
+========================================= */
+
+.form-section {
+
+    margin-bottom: 35px;
+}
+
+
+.form-section h3 {
+
+    display: flex;
+
+    align-items: center;
+
+    min-height: 35px;
+
+    padding-left: 13px;
+
+    margin-bottom: 20px;
+
+    border-left:
+        5px solid #ff7a00;
+
+    color: #111827;
+
+    font-size: 20px;
+
+    font-weight: 900;
+
+    letter-spacing: 0.3px;
+}
+
+
+/* =========================================
+   FORM GROUP
+========================================= */
+
+.form-group {
+
+    margin-bottom: 18px;
+}
+
+
+.form-group label {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #334155;
+
+    font-size: 13px;
+
+    font-weight: 800;
+}
+
+
+input,
+select {
+
+    width: 100%;
+
+    height: 50px;
+
+    padding:
+        0
+        15px;
+
+    border:
+        1px solid #cbd5e1;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #111827;
+
+    font-size: 15px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+input::placeholder {
+
+    color: #94a3b8;
+}
+
+
+input:focus,
+select:focus {
+
+    border-color: #087cff;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(8,124,255,0.12);
+}
+
+
+/* =========================================
+   TWO COLUMN
+========================================= */
+
+.two-column {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 20px;
+}
+
+
+/* =========================================
+   CHECKBOX
+========================================= */
+
+.checkbox-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+}
+
+
+.checkbox-option {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    cursor: pointer;
+
+    color: #1e293b;
+
+    font-size: 15px;
+
+    font-weight: 650;
+}
+
+
+.checkbox-option input {
+
+    width: 20px;
+
+    height: 20px;
+
+    flex-shrink: 0;
+
+    accent-color: #ff7a00;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   BELONG
+========================================= */
+
+.belong {
+
+    margin:
+        5px
+        0
+        35px;
+
+    text-align: center;
+
+    font-family:
+        "Brush Script MT",
+        "Segoe Script",
+        cursive;
+
+    font-size: 42px;
+
+    font-weight: 700;
+
+    color: #ff7a00;
+}
+
+
+/* =========================================
+   ALLOCATION
+========================================= */
+
+.allocation {
+
+    padding-top: 5px;
+}
+
+
+.allocation-title {
+
+    margin-bottom: 20px;
+}
+
+
+.allocation-title h3 {
+
+    margin-bottom: 4px;
+}
+
+
+.allocation-title span {
+
+    display: block;
+
+    padding-left: 18px;
+
+    color: #ff7a00;
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
+   SUBMIT BUTTON
+========================================= */
+
+.submit-button {
+
+    width: 100%;
+
+    min-height: 60px;
+
+    border: none;
+
+    border-radius: 999px;
+
+    padding:
+        0
+        25px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 15px;
+
+    color: #ffffff;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #ff7a00,
+            #087cff
+        );
+
+    font-size: 15px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 25px
+        rgba(8,124,255,0.2);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.submit-button:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 15px 35px
+        rgba(8,124,255,0.3);
+}
+
+
+.submit-button:active {
+
+    transform:
+        scale(0.98);
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 700px) {
+
+    body {
+
+        padding:
+            20px
+            12px
+            50px;
+    }
+
+
+    .form-card {
+
+        padding:
+            30px
+            22px;
+
+        border-radius: 22px;
+    }
+
+
+    .form-header {
+
+        flex-direction: column;
+
+        gap: 16px;
+    }
+
+
+    .form-title h1 {
+
+        font-size: 43px;
+    }
+
+
+    .form-title h2 {
+
+        font-size: 16px;
+    }
+
+
+    .welcome {
+
+        font-size: 32px;
+    }
+
+
+    .two-column {
+
+        grid-template-columns: 1fr;
+
+        gap: 0;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    body {
+
+        padding:
+            12px
+            8px
+            40px;
+    }
+
+
+    .back-button {
+
+        margin-left: 5px;
+
+        font-size: 10px;
+
+        padding:
+            9px
+            15px;
+    }
+
+
+    .form-card {
+
+        padding:
+            25px
+            16px;
+
+        border-radius: 18px;
+    }
+
+
+    .logo-circle {
+
+        width: 90px;
+
+        height: 90px;
+    }
+
+
+    .form-title h1 {
+
+        font-size: 36px;
+    }
+
+
+    .form-title h2 {
+
+        font-size: 13px;
+
+        letter-spacing: 1px;
+    }
+
+
+    .welcome {
+
+        font-size: 28px;
+
+        margin-bottom: 30px;
+    }
+
+
+    .form-section h3 {
+
+        font-size: 17px;
+    }
+
+
+    input,
+    select {
+
+        height: 47px;
+
+        font-size: 14px;
+    }
+
+
+    .checkbox-option {
+
+        align-items: flex-start;
+
+        font-size: 13px;
+
+        line-height: 1.4;
+    }
+
+
+    .belong {
+
+        font-size: 32px;
+    }
+
+
+    .submit-button {
+
+        min-height: 55px;
+
+        font-size: 12px;
+    }
+}
+/* =========================================================
+   VIP PAGE TWO COLUMN
+========================================================= */
+
+.vip-page {
+
+    width: 100%;
+
+    max-width: 1450px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        380px;
+
+    gap: 25px;
+
+    align-items: start;
+
+}
+
+
+/* =========================================================
+   DISCIPLE PANEL
+========================================================= */
+
+.disciple-panel {
+
+    position: sticky;
+
+    top: 25px;
+
+    background:
+        rgba(255,255,255,0.96);
+
+    border-radius: 28px;
+
+    padding: 28px;
+
+    box-shadow:
+        0 30px 80px
+        rgba(0,0,0,0.30);
+
+}
+
+
+.disciple-panel-header {
+
+    margin-bottom: 22px;
+
+}
+
+
+.eyebrow {
+
+    display: block;
+
+    color: #ff7a00;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 7px;
+
+}
+
+
+.disciple-panel h2 {
+
+    color: #111827;
+
+    font-size: 22px;
+
+    font-weight: 950;
+
+}
+
+
+.disciple-panel p {
+
+    margin-top: 8px;
+
+    color: #64748b;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-wrapper {
+
+    margin-bottom: 18px;
+
+}
+
+
+#discipleSearch {
+
+    width: 100%;
+
+    height: 52px;
+
+    border:
+        2px solid #dbe4ef;
+
+    border-radius: 999px;
+
+    padding:
+        0 18px;
+
+    outline: none;
+
+    color: #111827;
+
+    background: #ffffff;
+
+}
+
+
+#discipleSearch:focus {
+
+    border-color: #087cff;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(8,124,255,0.10);
+
+}
+
+
+/* =========================================================
+   SEARCH RESULTS
+========================================================= */
+
+.disciple-results {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+    max-height: 600px;
+
+    overflow-y: auto;
+
+}
+
+
+.disciple-result {
+
+    width: 100%;
+
+    border: none;
+
+    border-radius: 17px;
+
+    padding: 15px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    background:
+        #f1f5f9;
+
+    color: #111827;
+
+    transition:
+        0.2s ease;
+
+}
+
+
+.disciple-result:hover {
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff7a00,
+            #087cff
+        );
+
+    color: #ffffff;
+
+    transform:
+        translateX(3px);
+
+}
+
+
+.disciple-result strong {
+
+    display: block;
+
+    font-size: 14px;
+
+    font-weight: 900;
+
+}
+
+
+.disciple-result small {
+
+    display: block;
+
+    margin-top: 5px;
+
+    font-size: 10px;
+
+    opacity: 0.65;
+
+}
+
+
+.disciple-result span {
+
+    font-size: 20px;
+
+    font-weight: 900;
+
+}
+
+
+.empty-search {
+
+    padding: 45px 15px;
+
+    text-align: center;
+
+    color: #94a3b8;
+
+}
+
+
+.empty-search span {
+
+    display: block;
+
+    font-size: 28px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.empty-search p {
+
+    color: #94a3b8;
+
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.vip-modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    padding: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        rgba(2,10,25,0.72);
+
+    backdrop-filter:
+        blur(8px);
+
+}
+
+
+.vip-modal.hidden {
+
+    display: none;
+
+}
+
+
+.vip-modal-card {
+
+    position: relative;
+
+    width: min(700px, 100%);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    padding: 35px;
+
+    border-radius: 28px;
+
+    background: #ffffff;
+
+    color: #111827;
+
+    box-shadow:
+        0 35px 100px
+        rgba(0,0,0,0.45);
+
+}
+
+
+.modal-close {
+
+    position: absolute;
+
+    top: 15px;
+
+    right: 18px;
+
+    width: 38px;
+
+    height: 38px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #f1f5f9;
+
+    color: #334155;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+}
+
+
+.modal-close:hover {
+
+    background: #ff7a00;
+
+    color: #ffffff;
+
+}
+
+
+.vip-modal-card h2 {
+
+    margin-bottom: 20px;
+
+    color: #111827;
+
+    font-size: 28px;
+
+    font-weight: 950;
+
+}
+
+
+/* =========================================================
+   TIMER HISTORY
+========================================================= */
+
+.timer-history {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    margin: 20px 0;
+
+}
+
+
+.timer-row {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+
+    padding: 13px 15px;
+
+    border-radius: 12px;
+
+    background: #f8fafc;
+
+}
+
+
+.timer-row strong {
+
+    color: #334155;
+
+    font-size: 12px;
+
+}
+
+
+.timer-row span {
+
+    color: #087cff;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+}
+
+
+/* =========================================================
+   ACTION BUTTONS
+========================================================= */
+
+.modal-actions {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 10px;
+
+    margin-top: 20px;
+
+}
+
+
+.modal-actions button,
+.danger-actions button {
+
+    min-height: 48px;
+
+    border: none;
+
+    border-radius: 999px;
+
+    font-weight: 900;
+
+    letter-spacing: .5px;
+
+    cursor: pointer;
+
+}
+
+
+.action-primary {
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff7a00,
+            #087cff
+        );
+
+}
+
+
+.action-secondary {
+
+    color: #087cff;
+
+    background:
+        #eaf3ff;
+
+}
+
+
+.danger-actions {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 10px;
+
+    margin-top: 20px;
+
+}
+
+
+.edit-button {
+
+    background: #f1f5f9;
+
+    color: #334155;
+
+}
+
+
+.delete-button {
+
+    background: #fee2e2;
+
+    color: #dc2626;
+
+}
+
+
+.edit-button:hover {
+
+    background: #e2e8f0;
+
+}
+
+
+.delete-button:hover {
+
+    background: #fecaca;
+
+}
+
+
+/* =========================================================
+   FULL INFORMATION
+========================================================= */
+
+.full-info {
+
+    margin-top: 20px;
+
+    padding-top: 20px;
+
+    border-top:
+        1px solid #e2e8f0;
+
+}
+
+
+.full-info.hidden {
+
+    display: none;
+
+}
+
+
+.info-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 12px;
+
+}
+
+
+.info-grid > div {
+
+    padding: 13px;
+
+    border-radius: 12px;
+
+    background: #f8fafc;
+
+}
+
+
+.info-grid span {
+
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #94a3b8;
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+}
+
+
+.info-grid strong {
+
+    color: #1e293b;
+
+    font-size: 12px;
+
+    word-break: break-word;
+
+}
+
+
+/* =========================================================
+   TIMER FORM
+========================================================= */
+
+.timer-modal-card {
+
+    width: min(500px, 100%);
+
+}
+
+
+.timer-modal-card p {
+
+    margin-bottom: 20px;
+
+    color: #64748b;
+
+    font-size: 13px;
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .vip-page {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .disciple-panel {
+
+        position: static;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .vip-page {
+
+        gap: 15px;
+
+    }
+
+
+    .disciple-panel {
+
+        padding: 20px;
+
+        border-radius: 22px;
+
+    }
+
+
+    .vip-modal {
+
+        padding: 10px;
+
+    }
+
+
+    .vip-modal-card {
+
+        padding: 25px 18px;
+
+        border-radius: 22px;
+
+    }
+
+
+    .timer-row {
+
+        grid-template-columns: 1fr;
+
+        gap: 3px;
+
+    }
+
+
+    .info-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .modal-actions,
+    .danger-actions {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+/* =========================================================
+   TIMER EDIT / DELETE IMPROVEMENT
+========================================================= */
+
+.timer-row {
+    display: grid;
+
+    grid-template-columns:
+        minmax(120px, 1fr)
+        auto;
+
+    gap: 15px;
+
+    align-items: center;
+
+    padding: 14px 15px;
+
+    border-radius: 14px;
+
+    background: #f8fafc;
+
+    border:
+        1px solid
+        #e2e8f0;
+}
+
+
+.timer-row-info {
+    min-width: 0;
+}
+
+
+.timer-row-info strong {
+    display: block;
+
+    color: #334155;
+
+    font-size: 12px;
+
+    font-weight: 900;
+
+    letter-spacing: .4px;
+}
+
+
+.timer-row-info span {
+    display: block;
+
+    margin-top: 5px;
+
+    color: #087cff;
+
+    font-size: 12px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   TIMER BUTTONS
+========================================================= */
+
+.timer-actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+}
+
+
+.timer-action {
+    min-width: 58px;
+
+    min-height: 34px;
+
+    padding:
+        7px
+        11px;
+
+    border: none;
+
+    border-radius: 999px;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: .4px;
+
+    cursor: pointer;
+
+    transition:
+        transform .2s ease,
+        background .2s ease;
+}
+
+
+.timer-action:hover {
+    transform:
+        translateY(-2px);
+}
+
+
+.timer-edit {
+    color: #087cff;
+
+    background: #eaf3ff;
+}
+
+
+.timer-edit:hover {
+    background: #d8eaff;
+}
+
+
+.timer-delete {
+    color: #dc2626;
+
+    background: #fee2e2;
+}
+
+
+.timer-delete:hover {
+    background: #fecaca;
+}
+
+
+.timer-add {
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff7a00,
+            #087cff
+        );
+}
+
+
+.timer-add:hover {
+    opacity: .9;
+}
+
+
+/* =========================================================
+   EMPTY TIMER
+========================================================= */
+
+.timer-empty {
+    color: #94a3b8 !important;
+
+    font-weight: 700 !important;
+}
+
+
+/* =========================================================
+   TIMER DISCIPLE NAME
+========================================================= */
+
+.timer-disciple-name {
+    display: block;
+
+    margin-bottom: 20px;
+
+    padding: 12px 15px;
+
+    border-radius: 12px;
+
+    background: #f1f5f9;
+
+    color: #111827;
+
+    font-size: 14px;
+
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   TIMER FORM BUTTONS
+========================================================= */
+
+.timer-form-actions {
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        1fr;
+
+    gap: 10px;
+
+    margin-top: 20px;
+}
+
+
+.timer-form-actions button {
+    min-height: 48px;
+
+    border: none;
+
+    border-radius: 999px;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+
+.timer-form-actions button:hover {
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   MODAL FORM INPUTS
+========================================================= */
+
+.timer-modal-card input,
+.timer-modal-card select {
+    width: 100%;
+
+    height: 50px;
+
+    padding:
+        0
+        15px;
+
+    border:
+        1px solid
+        #cbd5e1;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #111827;
+
+    font-size: 14px;
+}
+
+
+.timer-modal-card input:focus,
+.timer-modal-card select:focus {
+    border-color: #087cff;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(8,124,255,.12);
+}
+
+
+/* =========================================================
+   MOBILE TIMER HISTORY
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .timer-row {
+        grid-template-columns: 1fr;
+
+        gap: 10px;
+    }
+
+
+    .timer-actions {
+        width: 100%;
+    }
+
+
+    .timer-action {
+        flex: 1;
+    }
+
+
+    .timer-form-actions {
+        grid-template-columns: 1fr;
+    }
+
+}

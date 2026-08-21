@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Sunday Report | Conquerors Paranaque
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="sunday-report.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<main class="page-container">
+
+
+    <!-- =========================================
+         TOP BAR
+    ========================================== -->
+
+    <header class="topbar">
+
+        <a
+            href="index.html"
+            class="back-button"
+        >
+            ← DASHBOARD
+        </a>
+
+
+        <div class="page-brand">
+
+            <span>
+                CONQUERORS PARANAQUE
+            </span>
+
+            <strong>
+                DATA BASED
+            </strong>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================
+         PAGE HEADING
+    ========================================== -->
+
+    <section class="page-heading">
+
+        <div class="orange-line"></div>
+
+        <h1>
+            SUNDAY REPORT
+        </h1>
+
+        <p>
+            WEEKLY CHURCH ATTENDANCE MONITORING
+        </p>
+
+    </section>
+
+
+
+    <!-- =========================================
+         REPORT CONTROLS
+    ========================================== -->
+
+    <section class="control-panel">
+
+
+        <div class="control-box">
+
+            <label for="reportDate">
+                REPORT DATE
+            </label>
+
+            <select id="reportDate"></select>
+
+        </div>
+
+
+        <div class="control-box search-date-box">
+
+            <label for="dateSearch">
+                SEARCH SUNDAY
+            </label>
+
+            <input
+                type="search"
+                id="dateSearch"
+                placeholder="Search August 16, 2026..."
+            >
+
+        </div>
+
+
+        <button
+            type="button"
+            id="newReportButton"
+            class="secondary-button"
+        >
+            NEW SUNDAY
+        </button>
+
+    </section>
+
+
+
+    <!-- =========================================
+         REPORT TITLE
+    ========================================== -->
+
+    <section class="report-heading-card">
+
+        <span class="eyebrow">
+            WEEKLY ATTENDANCE
+        </span>
+
+        <h2 id="reportTitle">
+            REPORT ON AUGUST 16, 2026
+        </h2>
+
+        <p>
+            Sunday Report
+        </p>
+
+    </section>
+
+
+
+    <!-- =========================================
+         ADULTS
+    ========================================== -->
+
+    <section class="report-section">
+
+        <div class="section-title">
+
+            <div>
+
+                <span class="eyebrow">
+                    CATEGORY
+                </span>
+
+                <h2>
+                    ADULTS
+                </h2>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="add-button"
+                id="addAdultButton"
+            >
+                + ADD NAME
+            </button>
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            CATEGORY
+                        </th>
+
+                        <th>
+                            NAME
+                        </th>
+
+                        <th>
+                            1ST TIMER
+                        </th>
+
+                        <th>
+                            2ND TIMER
+                        </th>
+
+                        <th>
+                            3RD TIMER
+                        </th>
+
+                        <th>
+                            4TH TIMER
+                        </th>
+
+                        <th>
+                            NEW NT TIMER
+                        </th>
+
+                        <th>
+                            NT TIMER
+                        </th>
+
+                        <th>
+                            ACTION
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="adultsBody"></tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         KIDS
+    ========================================== -->
+
+    <section class="report-section">
+
+        <div class="section-title">
+
+            <div>
+
+                <span class="eyebrow">
+                    CATEGORY
+                </span>
+
+                <h2>
+                    KIDS
+                </h2>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="add-button"
+                id="addKidButton"
+            >
+                + ADD NAME
+            </button>
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            CATEGORY
+                        </th>
+
+                        <th>
+                            NAME
+                        </th>
+
+                        <th>
+                            1ST TIMER
+                        </th>
+
+                        <th>
+                            2ND TIMER
+                        </th>
+
+                        <th>
+                            3RD TIMER
+                        </th>
+
+                        <th>
+                            4TH TIMER
+                        </th>
+
+                        <th>
+                            NEW NT TIMER
+                        </th>
+
+                        <th>
+                            NT TIMER
+                        </th>
+
+                        <th>
+                            ACTION
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="kidsBody"></tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         PRIMARY 12 WOMEN
+    ========================================== -->
+
+    <section class="report-section">
+
+        <div class="section-title">
+
+            <div>
+
+                <span class="eyebrow">
+                    PERMANENT MEMBERS
+                </span>
+
+                <h2>
+                    PRIMARY 12 WOMEN
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            CATEGORY
+                        </th>
+
+                        <th>
+                            NAME
+                        </th>
+
+                        <th>
+                            1ST TIMER
+                        </th>
+
+                        <th>
+                            2ND TIMER
+                        </th>
+
+                        <th>
+                            3RD TIMER
+                        </th>
+
+                        <th>
+                            4TH TIMER
+                        </th>
+
+                        <th>
+                            NEW NT TIMER
+                        </th>
+
+                        <th>
+                            NT TIMER
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="primaryWomenBody"></tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         PRIMARY 12 MEN
+    ========================================== -->
+
+    <section class="report-section">
+
+        <div class="section-title">
+
+            <div>
+
+                <span class="eyebrow">
+                    PERMANENT MEMBERS
+                </span>
+
+                <h2>
+                    PRIMARY 12 MEN
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            CATEGORY
+                        </th>
+
+                        <th>
+                            NAME
+                        </th>
+
+                        <th>
+                            1ST TIMER
+                        </th>
+
+                        <th>
+                            2ND TIMER
+                        </th>
+
+                        <th>
+                            3RD TIMER
+                        </th>
+
+                        <th>
+                            4TH TIMER
+                        </th>
+
+                        <th>
+                            NEW NT TIMER
+                        </th>
+
+                        <th>
+                            NT TIMER
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="primaryMenBody"></tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         144 LEADERS
+    ========================================== -->
+
+    <section class="report-section">
+
+        <div class="section-title">
+
+            <div>
+
+                <span class="eyebrow">
+                    PERMANENT MEMBERS
+                </span>
+
+                <h2>
+                    144 LEADERS
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            CATEGORY
+                        </th>
+
+                        <th>
+                            NAME
+                        </th>
+
+                        <th>
+                            1ST TIMER
+                        </th>
+
+                        <th>
+                            2ND TIMER
+                        </th>
+
+                        <th>
+                            3RD TIMER
+                        </th>
+
+                        <th>
+                            4TH TIMER
+                        </th>
+
+                        <th>
+                            NEW NT TIMER
+                        </th>
+
+                        <th>
+                            NT TIMER
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="leadersBody"></tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         TOTALS
+    ========================================== -->
+
+    <section class="totals-section">
+
+        <div class="section-title">
+
+            <div>
+
+                <span class="eyebrow">
+                    ATTENDANCE SUMMARY
+                </span>
+
+                <h2>
+                    TOTAL REPORT
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="totalsGrid"
+            class="totals-grid"
+        ></div>
+
+
+        <div class="grand-total">
+
+            <span>
+                TOTAL ATTENDANCE
+            </span>
+
+            <strong id="grandTotal">
+                0
+            </strong>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         SAVE
+    ========================================== -->
+
+    <div class="save-area">
+
+        <button
+            type="button"
+            id="saveReportButton"
+            class="save-button"
+        >
+            SAVE SUNDAY REPORT
+        </button>
+
+    </div>
+
+
+</main>
+
+
+<script src="sunday-report.js"></script>
+
+</body>
+
+</html>
