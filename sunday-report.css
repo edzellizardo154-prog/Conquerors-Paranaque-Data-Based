@@ -1,5 +1,5 @@
 /* =========================================
-   RESET
+   RESET & BASE
 ========================================= */
 
 * {
@@ -7,10 +7,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-
-/* =========================================
-   BODY
-========================================= */
 
 body {
     min-height: 100vh;
@@ -37,7 +33,7 @@ body {
 }
 
 /* =========================================
-   CONTAINER
+   CONTAINER & TOPBAR
 ========================================= */
 
 .page-container {
@@ -45,10 +41,6 @@ body {
     max-width: 1500px;
     margin: 0 auto;
 }
-
-/* =========================================
-   TOPBAR
-========================================= */
 
 .topbar {
     display: flex;
@@ -99,7 +91,7 @@ body {
 }
 
 /* =========================================
-   HEADING
+   HEADING & CONTROLS
 ========================================= */
 
 .page-heading {
@@ -128,10 +120,6 @@ body {
     font-weight: 800;
     letter-spacing: 3px;
 }
-
-/* =========================================
-   CONTROL PANEL
-========================================= */
 
 .control-panel {
     display: grid;
@@ -228,7 +216,7 @@ body {
 }
 
 /* =========================================
-   TABLE SECTION
+   TABLE STYLES
 ========================================= */
 
 .table-section {
@@ -331,10 +319,6 @@ tbody tr:hover {
     font-size: 12px;
 }
 
-/* =========================================
-   CHECKBOX & REMOVE
-========================================= */
-
 .timer-check {
     width: 21px;
     height: 21px;
@@ -360,7 +344,7 @@ tbody tr:hover {
 }
 
 /* =========================================
-   TOTALS
+   SUMMARY & FOOTER
 ========================================= */
 
 .totals-section {
@@ -378,6 +362,42 @@ tbody tr:hover {
     margin-bottom: 15px;
 }
 
+.section-title-margin {
+    margin-top: 25px;
+}
+
+/* Category Totals Grid */
+.category-totals-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.category-total-card {
+    padding: 20px 10px;
+    text-align: center;
+    border-radius: 15px;
+    background: #fff7ed;
+    border: 1px solid #ffedd5;
+}
+
+.category-total-card span {
+    display: block;
+    margin-bottom: 8px;
+    color: #c2410c;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.8px;
+}
+
+.category-total-card strong {
+    color: #ea580c;
+    font-size: 28px;
+    font-weight: 950;
+}
+
+/* Timers Totals Grid */
 .totals-grid {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -411,7 +431,7 @@ tbody tr:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 15px;
+    margin-top: 20px;
     padding: 20px 25px;
     border-radius: 16px;
     color: #ffffff;
@@ -428,10 +448,6 @@ tbody tr:hover {
     font-size: 35px;
     font-weight: 950;
 }
-
-/* =========================================
-   SAVE AREA
-========================================= */
 
 .save-area {
     margin-top: 25px;
@@ -458,7 +474,7 @@ tbody tr:hover {
 }
 
 /* =========================================
-   MOBILE RESPONSIVENESS
+   RESPONSIVE DESIGN
 ========================================= */
 
 @media (max-width: 900px) {
@@ -473,6 +489,10 @@ tbody tr:hover {
 
     .btn {
         width: 100%;
+    }
+
+    .category-totals-grid {
+        grid-template-columns: repeat(3, 1fr);
     }
 
     .totals-grid {
@@ -505,12 +525,17 @@ tbody tr:hover {
         flex-direction: column;
     }
 
+    .category-totals-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     .totals-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 400px) {
+    .category-totals-grid,
     .totals-grid {
         grid-template-columns: 1fr;
     }
