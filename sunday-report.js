@@ -2,16 +2,13 @@
    SUNDAY REPORT DATABASE
 ========================================================= */
 
-const STORAGE_KEY =
-    "conquerors_sunday_reports";
-
+const STORAGE_KEY = "conquerors_sunday_reports";
 
 /* =========================================================
    PERMANENT MEMBERS
 ========================================================= */
 
 const PRIMARY_WOMEN = [
-
     "Pas. Cristina Bautista",
     "Grace Anne Piol",
     "Angela Mae Pamaos",
@@ -27,12 +24,9 @@ const PRIMARY_WOMEN = [
     "Viel Galopar",
     "Melissa Rosales",
     "Kate Ashley Mambatac"
-
 ];
 
-
 const PRIMARY_MEN = [
-
     "Pas. Efren Bautista",
     "Marc Joseph Fonclara",
     "Mark Brian Venzuela",
@@ -47,1479 +41,555 @@ const PRIMARY_MEN = [
     "John Gerald Rosario",
     "Angelo Villagracia",
     "Jerico Amable"
-
 ];
 
-
-const LEADERS = [
-
-    "Alvin Anasco",
-    "Chris Bulay",
-    "Jairus Philip Moridas",
-    "Harold Rosales",
-    "Laurence Saut",
-    "Angelito Villagracia",
+const LEADERS_WOMEN = [
+    "Susana S. Villagracia",
     "Vanessa Balagbag",
-    "Keisha Claire Bulay",
-    "Madelyn Maure",
-    "Cloie kyle Sadueste",
+    "Angelina S. Villagracia",
     "Jhoyce Ann Valenzuela",
     "Kristine May Valenzuela",
-    "Angelina Villagracia",
-    "Susana Villagracia",
+    "Cloie Kyle Sadueste",
     "Marissa Valenzuela",
-    "Rhon Aldrin Titco",
-    "Ma. Rheinabel Valerio",
-    "Amber Bote",
-    "Michaella Barreda",
-    "Shaina Sicad",
-    "Hiah Bautista",
-    "Marvin Betonio",
-    "Sean Robles"
-
+    "Keisha Claire Bulay",
+    "Madelyn Maure"
 ];
 
-
-/* =========================================================
-   TIMER KEYS
-========================================================= */
-
-const TIMER_KEYS = [
-
-    "first",
-    "second",
-    "third",
-    "fourth",
-    "newNth",
-    "nt"
-
+const LEADERS_MEN = [
+    "Niño Chris Marven B. Bulay",
+    "Jairus Philip B. Moridas",
+    "Angelito S. Villagracia",
+    "Laurence Saut",
+    "Alvin Añasco",
+    "Harold Rosales"
 ];
 
-
-const TIMER_LABELS = [
-
-    "1ST TIMER",
-    "2ND TIMER",
-    "3RD TIMER",
-    "4TH TIMER",
-    "NEW NT TIMER",
-    "NT TIMER"
-
-];
-
+const TIMER_KEYS = ["first", "second", "third", "fourth", "newNth", "nt"];
+const TIMER_LABELS = ["1ST TIMER", "2ND TIMER", "3RD TIMER", "4TH TIMER", "NEW NT TIMER", "NT TIMER"];
 
 /* =========================================================
    ELEMENTS
 ========================================================= */
 
-const reportDate =
-    document.getElementById(
-        "reportDate"
-    );
-
-
-const dateSearch =
-    document.getElementById(
-        "dateSearch"
-    );
-
-
-const reportTitle =
-    document.getElementById(
-        "reportTitle"
-    );
-
-
-const adultsBody =
-    document.getElementById(
-        "adultsBody"
-    );
-
-
-const kidsBody =
-    document.getElementById(
-        "kidsBody"
-    );
-
-
-const primaryWomenBody =
-    document.getElementById(
-        "primaryWomenBody"
-    );
-
-
-const primaryMenBody =
-    document.getElementById(
-        "primaryMenBody"
-    );
-
-
-const leadersBody =
-    document.getElementById(
-        "leadersBody"
-    );
-
-
-const totalsGrid =
-    document.getElementById(
-        "totalsGrid"
-    );
-
-
-const grandTotal =
-    document.getElementById(
-        "grandTotal"
-    );
-
+const reportDate = document.getElementById("reportDate");
+const dateSearch = document.getElementById("dateSearch");
+const reportTitle = document.getElementById("reportTitle");
+const adultsBody = document.getElementById("adultsBody");
+const kidsBody = document.getElementById("kidsBody");
+const primaryWomenBody = document.getElementById("primaryWomenBody");
+const primaryMenBody = document.getElementById("primaryMenBody");
+const leadersWomenBody = document.getElementById("leadersWomenBody");
+const leadersMenBody = document.getElementById("leadersMenBody");
+const totalsGrid = document.getElementById("totalsGrid");
+const grandTotal = document.getElementById("grandTotal");
 
 /* =========================================================
-   DATABASE
+   DATABASE OPERATIONS
 ========================================================= */
 
 function getReports() {
-
     try {
-
-        const data =
-            localStorage.getItem(
-                STORAGE_KEY
-            );
-
-        return data
-            ? JSON.parse(data)
-            : {};
-
+        const data = localStorage.getItem(STORAGE_KEY);
+        return data ? JSON.parse(data) : {};
     } catch (error) {
-
-        console.error(
-            "Unable to load Sunday reports:",
-            error
-        );
-
+        console.error("Unable to load Sunday reports:", error);
         return {};
-
     }
-
 }
 
-
-function saveReports(
-    reports
-) {
-
-    localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(reports)
-    );
-
+function saveReports(reports) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(reports));
 }
-
 
 /* =========================================================
-   DATE FUNCTIONS
+   DATE HELPERS
 ========================================================= */
 
-function formatDate(
-    dateValue
-) {
-
-    if (!dateValue) {
-        return "";
-    }
-
-    const date =
-        new Date(
-            dateValue + "T00:00:00"
-        );
-
-    return date.toLocaleDateString(
-        "en-US",
-        {
-            month: "long",
-            day: "numeric",
-            year: "numeric"
-        }
-    );
-
+function formatDate(dateValue) {
+    if (!dateValue) return "";
+    const date = new Date(dateValue + "T00:00:00");
+    return date.toLocaleDateString("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric"
+    });
 }
 
-
-function getSunday(
-    date
-) {
-
-    const result =
-        new Date(date);
-
-    const day =
-        result.getDay();
-
-    result.setDate(
-        result.getDate() -
-        day
-    );
-
+function getSunday(date) {
+    const result = new Date(date);
+    const day = result.getDay();
+    result.setDate(result.getDate() - day);
     return result;
-
 }
 
-
-function toDateString(
-    date
-) {
-
+function toDateString(date) {
     return (
-
         date.getFullYear() +
         "-" +
-        String(
-            date.getMonth() + 1
-        ).padStart(2, "0") +
+        String(date.getMonth() + 1).padStart(2, "0") +
         "-" +
-        String(
-            date.getDate()
-        ).padStart(2, "0")
-
+        String(date.getDate()).padStart(2, "0")
     );
-
 }
-
-
-/* =========================================================
-   GENERATE SUNDAYS
-========================================================= */
 
 function generateSundays() {
-
-    const today =
-        new Date();
-
-
-    const currentSunday =
-        getSunday(today);
-
-
-    const start =
-        new Date(
-            2026,
-            0,
-            4
-        );
-
-
-    const end =
-        new Date(
-            currentSunday
-        );
-
-
-    /*
-     * Include future Sundays
-     * for upcoming reports.
-     */
-
-    end.setMonth(
-        end.getMonth() + 12
-    );
-
+    const today = new Date();
+    const currentSunday = getSunday(today);
+    const start = new Date(2026, 0, 4);
+    const end = new Date(currentSunday);
+    end.setMonth(end.getMonth() + 12);
 
     const dates = [];
+    let cursor = new Date(start);
 
-
-    let cursor =
-        new Date(start);
-
-
-    while (
-        cursor <= end
-    ) {
-
-        dates.push(
-            toDateString(cursor)
-        );
-
-
-        cursor.setDate(
-            cursor.getDate() + 7
-        );
-
+    while (cursor <= end) {
+        dates.push(toDateString(cursor));
+        cursor.setDate(cursor.getDate() + 7);
     }
-
 
     return dates;
-
 }
-
 
 /* =========================================================
-   CREATE EMPTY REPORT
+   DATA INITIALIZATION
 ========================================================= */
 
-function createEmptyReport(
-    date
-) {
-
+function createEmptyReport(date) {
     return {
-
         date: date,
-
         adults: [],
-
         kids: [],
-
-        primaryWomen:
-            PRIMARY_WOMEN.map(
-                name =>
-                    createPermanentPerson(
-                        name,
-                        "Primary 12 Women"
-                    )
-            ),
-
-        primaryMen:
-            PRIMARY_MEN.map(
-                name =>
-                    createPermanentPerson(
-                        name,
-                        "Primary 12 Men"
-                    )
-            ),
-
-        leaders:
-            LEADERS.map(
-                name =>
-                    createPermanentPerson(
-                        name,
-                        "144 Leaders"
-                    )
-            )
-
+        primaryWomen: PRIMARY_WOMEN.map(name => createPermanentPerson(name, "Primary 12 Women")),
+        primaryMen: PRIMARY_MEN.map(name => createPermanentPerson(name, "Primary 12 Men")),
+        leadersWomen: LEADERS_WOMEN.map(name => createPermanentPerson(name, "144 Leaders Women")),
+        leadersMen: LEADERS_MEN.map(name => createPermanentPerson(name, "144 Leaders Men"))
     };
-
 }
 
-
-function createPermanentPerson(
-    name,
-    category
-) {
-
+function createPermanentPerson(name, category) {
     return {
-
         id: createId(),
-
         category: category,
-
         name: name,
-
         timers: {
-
             first: false,
             second: false,
             third: false,
             fourth: false,
             newNth: false,
             nt: false
-
         }
-
     };
-
 }
 
-
-function createAdultOrKid(
-    category
-) {
-
+function createAdultOrKid(category) {
     return {
-
         id: createId(),
-
         category: category,
-
         name: "",
-
         timers: {
-
             first: false,
             second: false,
             third: false,
             fourth: false,
             newNth: false,
             nt: false
-
         }
-
     };
-
 }
-
 
 function createId() {
-
-    return (
-
-        Date.now().toString(36) +
-        Math.random()
-            .toString(36)
-            .substring(2, 8)
-
-    );
-
+    return Date.now().toString(36) + Math.random().toString(36).substring(2, 8);
 }
 
-
-/* =========================================================
-   LOAD REPORT
-========================================================= */
-
-function loadReport(
-    date
-) {
-
-    const reports =
-        getReports();
-
+function loadReport(date) {
+    const reports = getReports();
 
     if (!reports[date]) {
-
-        reports[date] =
-            createEmptyReport(
-                date
-            );
-
-        saveReports(
-            reports
-        );
-
+        reports[date] = createEmptyReport(date);
+        saveReports(reports);
     }
 
+    const report = reports[date];
 
-    /*
-     * Make sure old reports
-     * have all required arrays.
-     */
-
-    const report =
-        reports[date];
-
-
-    report.adults =
-        report.adults || [];
-
-
-    report.kids =
-        report.kids || [];
-
-
-    report.primaryWomen =
-        report.primaryWomen ||
-        PRIMARY_WOMEN.map(
-            name =>
-                createPermanentPerson(
-                    name,
-                    "Primary 12 Women"
-                )
-        );
-
-
-    report.primaryMen =
-        report.primaryMen ||
-        PRIMARY_MEN.map(
-            name =>
-                createPermanentPerson(
-                    name,
-                    "Primary 12 Men"
-                )
-        );
-
-
-    report.leaders =
-        report.leaders ||
-        LEADERS.map(
-            name =>
-                createPermanentPerson(
-                    name,
-                    "144 Leaders"
-                )
-        );
-
+    report.adults = report.adults || [];
+    report.kids = report.kids || [];
+    report.primaryWomen = report.primaryWomen || PRIMARY_WOMEN.map(name => createPermanentPerson(name, "Primary 12 Women"));
+    report.primaryMen = report.primaryMen || PRIMARY_MEN.map(name => createPermanentPerson(name, "Primary 12 Men"));
+    report.leadersWomen = report.leadersWomen || LEADERS_WOMEN.map(name => createPermanentPerson(name, "144 Leaders Women"));
+    report.leadersMen = report.leadersMen || LEADERS_MEN.map(name => createPermanentPerson(name, "144 Leaders Men"));
 
     return report;
-
 }
 
-
 /* =========================================================
-   DATE SELECTOR
+   RENDERING
 ========================================================= */
 
-function renderDateSelector(
-    selectedDate
-) {
+function renderDateSelector(selectedDate) {
+    const dates = generateSundays();
 
-    const dates =
-        generateSundays();
-
-
-    reportDate.innerHTML =
-        dates.map(
+    reportDate.innerHTML = dates
+        .map(
             date => `
-
-                <option
-                    value="${date}"
-                    ${date === selectedDate
-                        ? "selected"
-                        : ""}
-                >
+                <option value="${date}" ${date === selectedDate ? "selected" : ""}>
                     ${formatDate(date)}
                 </option>
-
             `
-        ).join("");
-
+        )
+        .join("");
 }
 
+function renderReport(date) {
+    const report = loadReport(date);
 
-/* =========================================================
-   RENDER REPORT
-========================================================= */
+    reportTitle.textContent = "REPORT ON " + formatDate(date).toUpperCase();
 
-function renderReport(
-    date
-) {
+    renderPeople(adultsBody, report.adults, true, true);
+    renderPeople(kidsBody, report.kids, true, true);
+    
+    // Regular Leaders Tables - ONLY NT TIMER (fullTimers = false)
+    renderPeople(primaryWomenBody, report.primaryWomen, false, false);
+    renderPeople(primaryMenBody, report.primaryMen, false, false);
+    renderPeople(leadersWomenBody, report.leadersWomen, false, false);
+    renderPeople(leadersMenBody, report.leadersMen, false, false);
 
-    const report =
-        loadReport(date);
-
-
-    reportTitle.textContent =
-        "REPORT ON " +
-        formatDate(date).toUpperCase();
-
-
-    renderPeople(
-        adultsBody,
-        report.adults,
-        true
-    );
-
-
-    renderPeople(
-        kidsBody,
-        report.kids,
-        true
-    );
-
-
-    renderPeople(
-        primaryWomenBody,
-        report.primaryWomen,
-        false
-    );
-
-
-    renderPeople(
-        primaryMenBody,
-        report.primaryMen,
-        false
-    );
-
-
-    renderPeople(
-        leadersBody,
-        report.leaders,
-        false
-    );
-
-
-    calculateTotals(
-        report
-    );
-
+    calculateTotals(report);
 }
 
+function renderPeople(container, people, editable, fullTimers) {
+    if (!container) return;
 
-/* =========================================================
-   RENDER PEOPLE
-========================================================= */
-
-function renderPeople(
-    container,
-    people,
-    editable
-) {
-
-    if (
-        !people ||
-        people.length === 0
-    ) {
-
+    if (!people || people.length === 0) {
+        const cols = editable ? 9 : (fullTimers ? 8 : 3);
         container.innerHTML = `
-
             <tr>
-
-                <td colspan="9">
-
-                    <div class="empty-message">
-                        No names added yet.
-                    </div>
-
+                <td colspan="${cols}">
+                    <div class="empty-message">No names added yet.</div>
                 </td>
-
             </tr>
-
         `;
-
         return;
-
     }
 
-
-    container.innerHTML =
-        people.map(
-            person => {
-
-                const nameCell = editable
-                    ? `
-                        <input
-                            class="name-input"
-                            type="text"
-                            value="${escapeHtml(person.name)}"
-                            data-field="name"
-                            data-id="${person.id}"
-                            placeholder="Insert name"
-                        >
-                    `
-                    : escapeHtml(person.name);
-
-                const removeCell = editable
-                    ? `
-                        <td>
-
-                            <button
-                                type="button"
-                                class="remove-button"
-                                data-remove-id="${person.id}"
-                            >
-                                ×
-                            </button>
-
-                        </td>
-                    `
-                    : "";
-
-                return `
-
-                    <tr
+    container.innerHTML = people
+        .map(person => {
+            const nameCell = editable
+                ? `
+                    <input
+                        class="name-input"
+                        type="text"
+                        value="${escapeHtml(person.name)}"
+                        data-field="name"
                         data-id="${person.id}"
+                        placeholder="Insert name"
                     >
+                `
+                : escapeHtml(person.name);
 
-                        <td class="category-cell">
+            const removeCell = editable
+                ? `
+                    <td>
+                        <button
+                            type="button"
+                            class="remove-button"
+                            data-remove-id="${person.id}"
+                            title="Remove"
+                        >
+                            ×
+                        </button>
+                    </td>
+                `
+                : "";
 
-                            ${escapeHtml(person.category)}
-
-                        </td>
-
-
-                        <td class="name-cell">
-
-                            ${nameCell}
-
-                        </td>
-
-
-                        ${renderTimerCell(
-                            person,
-                            "first"
-                        )}
-
-
-                        ${renderTimerCell(
-                            person,
-                            "second"
-                        )}
-
-
-                        ${renderTimerCell(
-                            person,
-                            "third"
-                        )}
-
-
-                        ${renderTimerCell(
-                            person,
-                            "fourth"
-                        )}
-
-
-                        ${renderTimerCell(
-                            person,
-                            "newNth"
-                        )}
-
-
-                        ${renderTimerCell(
-                            person,
-                            "nt"
-                        )}
-
-
-                        ${removeCell}
-
-                    </tr>
-
+            // Render Full Timer columns vs NT Timer Only
+            const timerCells = fullTimers
+                ? `
+                    ${renderTimerCell(person, "first")}
+                    ${renderTimerCell(person, "second")}
+                    ${renderTimerCell(person, "third")}
+                    ${renderTimerCell(person, "fourth")}
+                    ${renderTimerCell(person, "newNth")}
+                    ${renderTimerCell(person, "nt")}
+                `
+                : `
+                    ${renderTimerCell(person, "nt")}
                 `;
 
-            }
-        ).join("");
-
+            return `
+                <tr data-id="${person.id}">
+                    <td class="category-cell">${escapeHtml(person.category)}</td>
+                    <td class="name-cell">${nameCell}</td>
+                    ${timerCells}
+                    ${removeCell}
+                </tr>
+            `;
+        })
+        .join("");
 }
 
-
-/* =========================================================
-   TIMER CELL
-========================================================= */
-
-function renderTimerCell(
-    person,
-    timer
-) {
-
+function renderTimerCell(person, timer) {
     return `
-
         <td>
-
             <input
                 type="checkbox"
                 class="timer-check"
                 data-timer="${timer}"
                 data-id="${person.id}"
-                ${person.timers &&
-                person.timers[timer]
-                    ? "checked"
-                    : ""}
+                ${person.timers && person.timers[timer] ? "checked" : ""}
             >
-
         </td>
-
     `;
-
 }
 
-
 /* =========================================================
-   ADD ADULT
+   EVENTS & ACTIONS
 ========================================================= */
 
-document
-    .getElementById(
-        "addAdultButton"
-    )
-    .addEventListener(
-        "click",
-        function() {
+document.getElementById("addAdultButton").addEventListener("click", function () {
+    const report = loadReport(reportDate.value);
+    report.adults.push(createAdultOrKid("Adults"));
+    updateCurrentReport(report);
+});
 
-            const report =
-                loadReport(
-                    reportDate.value
-                );
+document.getElementById("addKidButton").addEventListener("click", function () {
+    const report = loadReport(reportDate.value);
+    report.kids.push(createAdultOrKid("Kids"));
+    updateCurrentReport(report);
+});
 
-
-            report.adults.push(
-                createAdultOrKid(
-                    "Adults"
-                )
-            );
-
-
-            updateCurrentReport(
-                report
-            );
-
-        }
-    );
-
-
-/* =========================================================
-   ADD KID
-========================================================= */
-
-document
-    .getElementById(
-        "addKidButton"
-    )
-    .addEventListener(
-        "click",
-        function() {
-
-            const report =
-                loadReport(
-                    reportDate.value
-                );
-
-
-            report.kids.push(
-                createAdultOrKid(
-                    "Kids"
-                )
-            );
-
-
-            updateCurrentReport(
-                report
-            );
-
-        }
-    );
-
-
-/* =========================================================
-   UPDATE REPORT
-========================================================= */
-
-function updateCurrentReport(
-    report
-) {
-
-    const reports =
-        getReports();
-
-
-    reports[
-        report.date
-    ] = report;
-
-
-    saveReports(
-        reports
-    );
-
-
-    renderReport(
-        report.date
-    );
-
+function updateCurrentReport(report) {
+    const reports = getReports();
+    reports[report.date] = report;
+    saveReports(reports);
+    renderReport(report.date);
 }
 
+document.addEventListener("change", function (event) {
+    if (!event.target.classList.contains("timer-check")) return;
 
-/* =========================================================
-   TABLE EVENTS
-========================================================= */
+    const timer = event.target.dataset.timer;
+    const id = event.target.dataset.id;
+    const report = loadReport(reportDate.value);
+    const person = findPerson(report, id);
 
-document.addEventListener(
-    "change",
-    function(event) {
+    if (!person) return;
 
-        if (
-            !event.target.classList.contains(
-                "timer-check"
-            )
-        ) {
+    person.timers = person.timers || {};
+    person.timers[timer] = event.target.checked;
 
-            return;
+    updateCurrentReport(report);
+});
 
-        }
+document.addEventListener("input", function (event) {
+    if (!event.target.classList.contains("name-input")) return;
 
+    const id = event.target.dataset.id;
+    const report = loadReport(reportDate.value);
+    const person = findPerson(report, id);
 
-        const timer =
-            event.target.dataset.timer;
+    if (!person) return;
 
+    person.name = event.target.value;
 
-        const id =
-            event.target.dataset.id;
+    const reports = getReports();
+    reports[report.date] = report;
+    saveReports(reports);
 
+    calculateTotals(report);
+});
 
-        const report =
-            loadReport(
-                reportDate.value
-            );
+document.addEventListener("click", function (event) {
+    if (!event.target.classList.contains("remove-button")) return;
 
+    const id = event.target.dataset.removeId;
+    const report = loadReport(reportDate.value);
 
-        const person =
-            findPerson(
-                report,
-                id
-            );
+    report.adults = report.adults.filter(person => person.id !== id);
+    report.kids = report.kids.filter(person => person.id !== id);
 
+    updateCurrentReport(report);
+});
 
-        if (!person) {
-            return;
-        }
-
-
-        person.timers =
-            person.timers || {};
-
-
-        person.timers[timer] =
-            event.target.checked;
-
-
-        /*
-         * Automatic NT behavior.
-         *
-         * Kapag NT checked,
-         * attendance siya as NT.
-         */
-
-        updateCurrentReport(
-            report
-        );
-
-    }
-);
-
-
-/* =========================================================
-   NAME INPUT EVENTS
-========================================================= */
-
-document.addEventListener(
-    "input",
-    function(event) {
-
-        if (
-            !event.target.classList.contains(
-                "name-input"
-            )
-        ) {
-
-            return;
-
-        }
-
-
-        const id =
-            event.target.dataset.id;
-
-
-        const report =
-            loadReport(
-                reportDate.value
-            );
-
-
-        const person =
-            findPerson(
-                report,
-                id
-            );
-
-
-        if (!person) {
-            return;
-        }
-
-
-        person.name =
-            event.target.value;
-
-
-        const reports =
-            getReports();
-
-
-        reports[
-            report.date
-        ] = report;
-
-
-        saveReports(
-            reports
-        );
-
-    }
-);
-
-
-/* =========================================================
-   REMOVE NAME
-========================================================= */
-
-document.addEventListener(
-    "click",
-    function(event) {
-
-        if (
-            !event.target.classList.contains(
-                "remove-button"
-            )
-        ) {
-
-            return;
-
-        }
-
-
-        const id =
-            event.target.dataset.removeId;
-
-
-        const report =
-            loadReport(
-                reportDate.value
-            );
-
-
-        report.adults =
-            report.adults.filter(
-                person =>
-                    person.id !== id
-            );
-
-
-        report.kids =
-            report.kids.filter(
-                person =>
-                    person.id !== id
-            );
-
-
-        updateCurrentReport(
-            report
-        );
-
-    }
-);
-
-
-/* =========================================================
-   FIND PERSON
-========================================================= */
-
-function findPerson(
-    report,
-    id
-) {
-
+function findPerson(report, id) {
     const groups = [
-
         report.adults,
         report.kids,
         report.primaryWomen,
         report.primaryMen,
-        report.leaders
-
+        report.leadersWomen,
+        report.leadersMen
     ];
 
-
-    for (
-        const group of groups
-    ) {
-
-        const found =
-            group.find(
-                person =>
-                    person.id === id
-            );
-
-
-        if (found) {
-            return found;
-        }
-
+    for (const group of groups) {
+        if (!group) continue;
+        const found = group.find(person => person.id === id);
+        if (found) return found;
     }
-
 
     return null;
-
 }
 
-
 /* =========================================================
-   CALCULATE TOTALS
+   CALCULATIONS & TOTALS
 ========================================================= */
 
-function calculateTotals(
-    report
-) {
-
+function calculateTotals(report) {
     const allPeople = [
-
-        ...report.adults,
-        ...report.kids,
-        ...report.primaryWomen,
-        ...report.primaryMen,
-        ...report.leaders
-
+        ...(report.adults || []),
+        ...(report.kids || []),
+        ...(report.primaryWomen || []),
+        ...(report.primaryMen || []),
+        ...(report.leadersWomen || []),
+        ...(report.leadersMen || [])
     ];
 
+    const totals = { first: 0, second: 0, third: 0, fourth: 0, newNth: 0, nt: 0 };
 
-    const totals = {
+    allPeople.forEach(person => {
+        if (!person.name || !person.name.trim()) return;
 
-        first: 0,
-
-        second: 0,
-
-        third: 0,
-
-        fourth: 0,
-
-        newNth: 0,
-
-        nt: 0
-
-    };
-
-
-    allPeople.forEach(
-        person => {
-
-            /*
-             * Ignore empty adult/kid rows.
-             */
-
-            if (
-                !person.name ||
-                !person.name.trim()
-            ) {
-
-                return;
-
+        TIMER_KEYS.forEach(timer => {
+            if (person.timers && person.timers[timer]) {
+                totals[timer]++;
             }
+        });
+    });
 
+    totalsGrid.innerHTML = TIMER_KEYS.map((timer, index) => `
+        <div class="total-card">
+            <span>${TIMER_LABELS[index]}</span>
+            <strong>${totals[timer]}</strong>
+        </div>
+    `).join("");
 
-            TIMER_KEYS.forEach(
-                timer => {
-
-                    if (
-                        person.timers &&
-                        person.timers[timer]
-                    ) {
-
-                        totals[timer]++;
-
-                    }
-
-                }
-            );
-
-        }
-    );
-
-
-    totalsGrid.innerHTML =
-
-        TIMER_KEYS.map(
-            (timer,index) => `
-
-                <div class="total-card">
-
-                    <span>
-                        ${TIMER_LABELS[index]}
-                    </span>
-
-                    <strong>
-                        ${totals[timer]}
-                    </strong>
-
-                </div>
-
-            `
-        ).join("");
-
-
-    /*
-     * Grand total counts
-     * attendance marks.
-     */
-
-    const total =
-        Object.values(
-            totals
-        ).reduce(
-            (sum,value) =>
-                sum + value,
-            0
-        );
-
-
-    grandTotal.textContent =
-        total;
-
+    const total = Object.values(totals).reduce((sum, value) => sum + value, 0);
+    grandTotal.textContent = total;
 }
 
-
 /* =========================================================
-   SAVE BUTTON
+   SAVE & COPY SUMMARY
 ========================================================= */
 
-document
-    .getElementById(
-        "saveReportButton"
-    )
-    .addEventListener(
-        "click",
-        function() {
+function executeSave() {
+    const report = loadReport(reportDate.value);
 
-            const report =
-                loadReport(
-                    reportDate.value
-                );
+    report.adults = report.adults.filter(person => person.name && person.name.trim());
+    report.kids = report.kids.filter(person => person.name && person.name.trim());
 
+    updateCurrentReport(report);
 
-            /*
-             * Remove blank adult/kid rows
-             * before saving.
-             */
-
-            report.adults =
-                report.adults.filter(
-                    person =>
-                        person.name &&
-                        person.name.trim()
-                );
-
-
-            report.kids =
-                report.kids.filter(
-                    person =>
-                        person.name &&
-                        person.name.trim()
-                );
-
-
-            updateCurrentReport(
-                report
-            );
-
-
-            alert(
-
-                "Sunday Report saved successfully!\n\n" +
-
-                "Report Date: " +
-
-                formatDate(
-                    report.date
-                )
-
-            );
-
-        }
-    );
-
-
-/* =========================================================
-   DATE CHANGE
-========================================================= */
-
-reportDate.addEventListener(
-    "change",
-    function() {
-
-        renderReport(
-            this.value
-        );
-
-        dateSearch.value = "";
-
-    }
-);
-
-
-/* =========================================================
-   DATE SEARCH
-========================================================= */
-
-dateSearch.addEventListener(
-    "input",
-    function() {
-
-        const query =
-            this.value
-                .trim()
-                .toLowerCase();
-
-
-        if (!query) {
-            return;
-        }
-
-
-        const dates =
-            generateSundays();
-
-
-        const matched =
-            dates.find(
-                date =>
-                    formatDate(date)
-                        .toLowerCase()
-                        .includes(query)
-            );
-
-
-        if (matched) {
-
-            reportDate.value =
-                matched;
-
-
-            renderReport(
-                matched
-            );
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   NEW SUNDAY
-========================================================= */
-
-document
-    .getElementById(
-        "newReportButton"
-    )
-    .addEventListener(
-        "click",
-        function() {
-
-            const selected =
-                reportDate.value;
-
-
-            const date =
-                new Date(
-                    selected +
-                    "T00:00:00"
-                );
-
-
-            date.setDate(
-                date.getDate() + 7
-            );
-
-
-            const nextSunday =
-                toDateString(
-                    date
-                );
-
-
-            const reports =
-                getReports();
-
-
-            if (
-                !reports[nextSunday]
-            ) {
-
-                reports[nextSunday] =
-                    createEmptyReport(
-                        nextSunday
-                    );
-
-                saveReports(
-                    reports
-                );
-
-            }
-
-
-            renderDateSelector(
-                nextSunday
-            );
-
-
-            reportDate.value =
-                nextSunday;
-
-
-            renderReport(
-                nextSunday
-            );
-
-        }
-    );
-
-
-/* =========================================================
-   ESCAPE HTML
-========================================================= */
-
-function escapeHtml(
-    value
-) {
-
-    return String(
-        value ?? ""
-    )
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-        .replace(
-            /</g,
-            "&lt;"
-        )
-        .replace(
-            />/g,
-            "&gt;"
-        )
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-
+    alert("Sunday Report saved successfully!\n\nReport Date: " + formatDate(report.date));
 }
 
+document.getElementById("saveReportButton").addEventListener("click", executeSave);
+document.getElementById("bottomSaveButton").addEventListener("click", executeSave);
+
+document.getElementById("copySummaryButton").addEventListener("click", function () {
+    const report = loadReport(reportDate.value);
+    const allPeople = [
+        ...(report.adults || []),
+        ...(report.kids || []),
+        ...(report.primaryWomen || []),
+        ...(report.primaryMen || []),
+        ...(report.leadersWomen || []),
+        ...(report.leadersMen || [])
+    ];
+
+    const totals = { first: 0, second: 0, third: 0, fourth: 0, newNth: 0, nt: 0 };
+
+    allPeople.forEach(person => {
+        if (!person.name || !person.name.trim()) return;
+        TIMER_KEYS.forEach(timer => {
+            if (person.timers && person.timers[timer]) totals[timer]++;
+        });
+    });
+
+    const grand = Object.values(totals).reduce((a, b) => a + b, 0);
+
+    const summaryText = 
+`📊 *CONQUERORS SUNDAY REPORT* 📊
+📅 Date: ${formatDate(report.date)}
+
+• 1st Timers: ${totals.first}
+• 2nd Timers: ${totals.second}
+• 3rd Timers: ${totals.third}
+• 4th Timers: ${totals.fourth}
+• New NT Timers: ${totals.newNth}
+• NT Timers: ${totals.nt}
+
+🔥 *GRAND TOTAL: ${grand}*`;
+
+    navigator.clipboard.writeText(summaryText).then(() => {
+        alert("GC Summary Copied to Clipboard!\n\nReady to paste on Messenger.");
+    });
+});
 
 /* =========================================================
-   INITIALIZE
+   NAVIGATION & SEARCH
 ========================================================= */
+
+reportDate.addEventListener("change", function () {
+    renderReport(this.value);
+    dateSearch.value = "";
+});
+
+dateSearch.addEventListener("input", function () {
+    const query = this.value.trim().toLowerCase();
+    if (!query) return;
+
+    const dates = generateSundays();
+    const matched = dates.find(date =>
+        formatDate(date).toLowerCase().includes(query)
+    );
+
+    if (matched) {
+        reportDate.value = matched;
+        renderReport(matched);
+    }
+});
+
+document.getElementById("newReportButton").addEventListener("click", function () {
+    const selected = reportDate.value;
+    const date = new Date(selected + "T00:00:00");
+    date.setDate(date.getDate() + 7);
+
+    const nextSunday = toDateString(date);
+    const reports = getReports();
+
+    if (!reports[nextSunday]) {
+        reports[nextSunday] = createEmptyReport(nextSunday);
+        saveReports(reports);
+    }
+
+    renderDateSelector(nextSunday);
+    reportDate.value = nextSunday;
+    renderReport(nextSunday);
+});
+
+/* =========================================================
+   UTILITIES & INIT
+========================================================= */
+
+function escapeHtml(value) {
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
 
 (function init() {
+    const reports = getReports();
+    const firstSunday = "2026-08-16";
 
-    const reports =
-        getReports();
-
-
-    /*
-     * First report:
-     * August 16, 2026
-     */
-
-    const firstSunday =
-        "2026-08-16";
-
-
-    if (
-        !reports[firstSunday]
-    ) {
-
-        reports[firstSunday] =
-            createEmptyReport(
-                firstSunday
-            );
-
-        saveReports(
-            reports
-        );
-
+    if (!reports[firstSunday]) {
+        reports[firstSunday] = createEmptyReport(firstSunday);
+        saveReports(reports);
     }
 
-
-    renderDateSelector(
-        firstSunday
-    );
-
-
-    reportDate.value =
-        firstSunday;
-
-
-    renderReport(
-        firstSunday
-    );
-
+    renderDateSelector(firstSunday);
+    reportDate.value = firstSunday;
+    renderReport(firstSunday);
 })();
