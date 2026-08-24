@@ -3,54 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sunday Report - Conquerors Database</title>
+    <title>Conquerors Sunday Report</title>
     <link rel="stylesheet" href="sunday-report.css">
 </head>
 <body>
 
     <div class="page-container">
-        <!-- TOP NAVIGATION BAR -->
-        <div class="topbar">
+        <!-- TOPBAR -->
+        <header class="topbar">
             <a href="index.html" class="back-button">← BACK TO DASHBOARD</a>
             <div class="page-brand">
-                <span>CONQUERORS DATABASE</span>
-                <strong>SUNDAY ATTENDANCE SYSTEM</strong>
+                <span>CONQUERORS</span>
+                <strong>SUNDAY ATTENDANCE REPORT</strong>
             </div>
-        </div>
+        </header>
 
         <!-- PAGE HEADING -->
-        <div class="page-heading">
+        <section class="page-heading">
             <div class="orange-line"></div>
             <h1 id="reportTitle">REPORT ON SUNDAY</h1>
-            <p>WEEKLY ATTENDANCE & TIMER TRACKER</p>
-        </div>
+            <p>CONQUERORS INTERNATIONAL CHURCH</p>
+        </section>
 
         <!-- CONTROL PANEL -->
-        <div class="control-panel">
+        <section class="control-panel">
             <div class="control-box">
-                <label for="reportDate">SELECT SUNDAY DATE:</label>
+                <label for="reportDate">SELECT SUNDAY DATE</label>
                 <select id="reportDate"></select>
             </div>
-
             <div class="control-box">
-                <label for="dateSearch">SEARCH DATE:</label>
+                <label for="dateSearch">SEARCH DATE</label>
                 <input type="text" id="dateSearch" placeholder="e.g. August 16, 2026">
             </div>
-
             <div class="action-buttons">
-                <button id="newReportButton" class="btn btn-secondary">+ New Sunday</button>
-                <button id="copySummaryButton" class="btn btn-secondary">📋 Copy GC Summary</button>
-                <button id="saveReportButton" class="btn btn-primary">💾 Save Report</button>
+                <button type="button" id="newReportButton" class="btn btn-secondary">+ NEW REPORT</button>
+                <button type="button" id="saveReportButton" class="btn btn-primary">SAVE REPORT</button>
+                <button type="button" id="copySummaryButton" class="btn btn-secondary">COPY FOR GC</button>
             </div>
-        </div>
+        </section>
 
-        <!-- TOTALS SUMMARY CARD -->
-        <section class="totals-section">
-            <h2>SUMMARY TOTALS</h2>
-            <div id="totalsGrid" class="totals-grid"></div>
-            <div class="grand-total">
-                <span>GRAND TOTAL ATTENDANCE</span>
-                <strong id="grandTotal">0</strong>
+        <!-- PASTORS SECTION -->
+        <section class="table-section">
+            <div class="section-header">
+                <h3>PASTORS</h3>
+                <button type="button" id="addPastorButton" class="btn btn-small">+ ADD PASTOR</button>
+            </div>
+            <div class="table-wrapper">
+                <table class="report-table">
+                    <thead>
+                        <tr>
+                            <th>CATEGORY</th>
+                            <th>NAME</th>
+                            <th>NT TIMER</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pastorsBody"></tbody>
+                </table>
             </div>
         </section>
 
@@ -58,7 +67,7 @@
         <section class="table-section">
             <div class="section-header">
                 <h3>ADULTS</h3>
-                <button id="addAdultButton" class="btn btn-small">+ Add Adult</button>
+                <button type="button" id="addAdultButton" class="btn btn-small">+ ADD ADULT</button>
             </div>
             <div class="table-wrapper">
                 <table class="report-table">
@@ -84,7 +93,7 @@
         <section class="table-section">
             <div class="section-header">
                 <h3>KIDS</h3>
-                <button id="addKidButton" class="btn btn-small">+ Add Kid</button>
+                <button type="button" id="addKidButton" class="btn btn-small">+ ADD KID</button>
             </div>
             <div class="table-wrapper">
                 <table class="report-table">
@@ -106,7 +115,7 @@
             </div>
         </section>
 
-        <!-- PRIMARY 12 WOMEN SECTION -->
+        <!-- PRIMARY 12 (WOMEN) -->
         <section class="table-section">
             <h3>PRIMARY 12 (WOMEN)</h3>
             <div class="table-wrapper">
@@ -123,7 +132,7 @@
             </div>
         </section>
 
-        <!-- PRIMARY 12 MEN SECTION -->
+        <!-- PRIMARY 12 (MEN) -->
         <section class="table-section">
             <h3>PRIMARY 12 (MEN)</h3>
             <div class="table-wrapper">
@@ -140,7 +149,7 @@
             </div>
         </section>
 
-        <!-- 144 LEADERS WOMEN SECTION -->
+        <!-- 144 LEADERS (WOMEN) -->
         <section class="table-section">
             <h3>144 LEADERS (WOMEN)</h3>
             <div class="table-wrapper">
@@ -157,7 +166,7 @@
             </div>
         </section>
 
-        <!-- 144 LEADERS MEN SECTION -->
+        <!-- 144 LEADERS (MEN) -->
         <section class="table-section">
             <h3>144 LEADERS (MEN)</h3>
             <div class="table-wrapper">
@@ -174,9 +183,23 @@
             </div>
         </section>
 
-        <!-- FOOTER SAVE AREA -->
+        <!-- SUMMARY TOTALS -->
+        <section class="totals-section">
+            <h2>CATEGORY BREAKDOWN</h2>
+            <div class="category-totals-grid" id="categoryTotalsGrid"></div>
+
+            <h2 class="section-title-margin">TIMERS BREAKDOWN</h2>
+            <div class="totals-grid" id="totalsGrid"></div>
+
+            <div class="grand-total">
+                <span>GRAND TOTAL ATTENDANCE</span>
+                <strong id="grandTotal">0</strong>
+            </div>
+        </section>
+
+        <!-- SAVE BUTTON AREA -->
         <div class="save-area">
-            <button id="bottomSaveButton" class="save-button">SAVE SUNDAY REPORT</button>
+            <button type="button" id="bottomSaveButton" class="save-button">SAVE REPORT</button>
         </div>
     </div>
 
