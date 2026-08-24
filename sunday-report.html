@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conquerors Sunday Report</title>
+    <link rel="stylesheet" href="sunday-report.css">
+</head>
+<body>
+
+    <div class="page-container">
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <a href="index.html" class="back-button">← BACK TO DASHBOARD</a>
+            <div class="page-brand">
+                <span>CONQUERORS</span>
+                <strong>SUNDAY ATTENDANCE REPORT</strong>
+            </div>
+        </header>
+
+        <!-- PAGE HEADING -->
+        <section class="page-heading">
+            <div class="orange-line"></div>
+            <h1 id="reportTitle">REPORT ON SUNDAY</h1>
+            <p>CONQUERORS INTERNATIONAL CHURCH</p>
+        </section>
+
+        <!-- CONTROL PANEL -->
+        <section class="control-panel">
+            <div class="control-box">
+                <label for="reportDate">SELECT SUNDAY DATE</label>
+                <select id="reportDate"></select>
+            </div>
+            <div class="control-box">
+                <label for="dateSearch">SEARCH DATE</label>
+                <input type="text" id="dateSearch" placeholder="e.g. August 16, 2026">
+            </div>
+            <div class="action-buttons">
+                <button type="button" id="newReportButton" class="btn btn-secondary">+ NEW REPORT</button>
+                <button type="button" id="saveReportButton" class="btn btn-primary">SAVE REPORT</button>
+                <button type="button" id="copySummaryButton" class="btn btn-secondary">COPY FOR GC</button>
+            </div>
+        </section>
+
+        <!-- PASTORS SECTION -->
+        <section class="table-section">
+            <div class="section-header">
+                <h3>PASTORS</h3>
+                <button type="button" id="addPastorButton" class="btn btn-small">+ ADD PASTOR</button>
+            </div>
+            <div class="table-wrapper">
+                <table class="report-table">
+                    <thead>
+                        <tr>
+                            <th>CATEGORY</th>
+                            <th>NAME</th>
+                            <th>NT TIMER</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pastorsBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ADULTS SECTION -->
+        <section class="table-section">
+            <div class="section-header">
+                <h3>ADULTS</h3>
+                <button type="button" id="addAdultButton" class="btn btn-small">+ ADD ADULT</button>
+            </div>
+            <div class="table-wrapper">
+                <table class="report-table">
+                    <thead>
+                        <tr>
+                            <th>CATEGORY</th>
+                            <th>NAME</th>
+                            <th>1ST TIMER</th>
+                            <th>2ND TIMER</th>
+                            <th>3RD TIMER</th>
+                            <th>4TH TIMER</th>
+                            <th>NEW NT TIMER</th>
+                            <th>NT TIMER</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adultsBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- KIDS SECTION -->
+        <section class="table-section">
+            <div class="section-header">
+                <h3>KIDS</h3>
+                <button type="button" id="addKidButton" class="btn btn-small">+ ADD KID</button>
+            </div>
+            <div class="table-wrapper">
+                <table class="report-table">
+                    <thead>
+                        <tr>
+                            <th>CATEGORY</th>
+                            <th>NAME</th>
+                            <th>1ST TIMER</th>
+                            <th>2ND TIMER</th>
+                            <th>3RD TIMER</th>
+                            <th>4TH TIMER</th>
+                            <th>NEW NT TIMER</th>
+                            <th>NT TIMER</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody id="kidsBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- PRIMARY 12 (WOMEN) -->
+        <section class="table-section">
+            <h3>PRIMARY 12 (WOMEN)</h3>
+            <div class="table-wrapper">
+                <table class="report-table">
+                    <thead>
+                        <tr>
+                            <th>CATEGORY</th>
+                            <th>NAME</th>
+                            <th>NT TIMER</th>
+                        </tr>
+                    </thead>
+                    <tbody id="primaryWomenBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- PRIMARY 12 (MEN) -->
+        <section class="table-section">
+            <h3>PRIMARY 12 (MEN)</h3>
+            <div class="table-wrapper">
+                <table class="report-table">
+                    <thead>
+                        <tr>
+                            <th>CATEGORY</th>
+                            <th>NAME</th>
+                            <th>NT TIMER</th>
+                        </tr>
+                    </thead>
+                    <tbody id="primaryMenBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 144 LEADERS (WOMEN) -->
+        <section class="table-section">
+            <h3>144 LEADERS (WOMEN)</h3>
+            <div class="table-wrapper">
+                <table class="report-table">
+                    <thead>
+                        <tr>
+                            <th>CATEGORY</th>
+                            <th>NAME</th>
+                            <th>NT TIMER</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leadersWomenBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 144 LEADERS (MEN) -->
+        <section class="table-section">
+            <h3>144 LEADERS (MEN)</h3>
+            <div class="table-wrapper">
+                <table class="report-table">
+                    <thead>
+                        <tr>
+                            <th>CATEGORY</th>
+                            <th>NAME</th>
+                            <th>NT TIMER</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leadersMenBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SUMMARY TOTALS -->
+        <section class="totals-section">
+            <h2>CATEGORY BREAKDOWN</h2>
+            <div class="category-totals-grid" id="categoryTotalsGrid"></div>
+
+            <h2 class="section-title-margin">TIMERS BREAKDOWN</h2>
+            <div class="totals-grid" id="totalsGrid"></div>
+
+            <div class="grand-total">
+                <span>GRAND TOTAL ATTENDANCE</span>
+                <strong id="grandTotal">0</strong>
+            </div>
+        </section>
+
+        <!-- SAVE BUTTON AREA -->
+        <div class="save-area">
+            <button type="button" id="bottomSaveButton" class="save-button">SAVE REPORT</button>
+        </div>
+    </div>
+
+    <script src="sunday-report.js"></script>
+</body>
+</html>
