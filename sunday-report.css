@@ -1,5 +1,5 @@
 /* ==========================================
-   EXACT DARK/GLOWING THEME FROM SCREENSHOT 1
+   PURE WHITE & ORANGE CLEAN THEME
 ========================================== */
 * {
     margin: 0;
@@ -9,11 +9,8 @@
 }
 
 body {
-    background: #030816;
-    background-image: 
-        radial-gradient(circle at 10% 20%, rgba(13, 27, 62, 0.8) 0%, transparent 40%),
-        radial-gradient(circle at 90% 80%, rgba(20, 35, 75, 0.6) 0%, transparent 40%);
-    color: #ffffff;
+    background-color: #f8fafc;
+    color: #1e293b;
     min-height: 100vh;
     padding: 24px;
 }
@@ -31,29 +28,29 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(14, 23, 47, 0.85);
-    backdrop-filter: blur(12px);
-    padding: 12px 20px;
+    background: #ffffff;
+    padding: 14px 24px;
     border-radius: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
 }
 
 .back-link {
-    color: #ffffff;
+    color: #ff6b00;
     text-decoration: none;
-    font-weight: 700;
-    font-size: 0.75rem;
-    letter-spacing: 1px;
-    background: rgba(255, 255, 255, 0.05);
+    font-weight: 800;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    background: #fff5ed;
     padding: 8px 18px;
     border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid #ffd8bf;
     transition: all 0.2s ease;
 }
 
 .back-link:hover {
-    background: rgba(255, 255, 255, 0.15);
-    color: #ff7300;
+    background: #ff6b00;
+    color: #ffffff;
 }
 
 .branding {
@@ -64,15 +61,15 @@ body {
 
 .brand-sub {
     font-size: 0.65rem;
-    color: #8fa0b5;
+    color: #64748b;
     letter-spacing: 1.5px;
     font-weight: 700;
 }
 
 .brand-title {
-    font-size: 0.8rem;
-    color: #ff7300;
-    font-weight: 800;
+    font-size: 0.85rem;
+    color: #ff6b00;
+    font-weight: 900;
     letter-spacing: 1px;
 }
 
@@ -85,21 +82,21 @@ body {
 .accent-line {
     width: 60px;
     height: 4px;
-    background: linear-gradient(90deg, #ff7300, #3a82f6);
+    background: #ff6b00;
     margin: 0 auto 12px auto;
     border-radius: 2px;
 }
 
 .title-container h1 {
-    font-size: 2.8rem;
+    font-size: 2.5rem;
     font-weight: 900;
     letter-spacing: 1px;
-    color: #ffffff;
+    color: #0f172a;
 }
 
 .church-sub {
-    color: #8fa0b5;
-    font-size: 0.75rem;
+    color: #64748b;
+    font-size: 0.8rem;
     margin-top: 4px;
     letter-spacing: 1.5px;
     font-weight: 700;
@@ -110,11 +107,11 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
-    background: rgba(14, 23, 47, 0.85);
-    backdrop-filter: blur(12px);
+    background: #ffffff;
     padding: 20px;
     border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
     align-items: flex-end;
 }
 
@@ -127,22 +124,27 @@ body {
 }
 
 .control-box label {
-    font-size: 0.68rem;
+    font-size: 0.7rem;
     font-weight: 800;
-    color: #8fa0b5;
+    color: #475569;
     letter-spacing: 0.5px;
 }
 
 .control-box select,
 .control-box input {
-    background: #ffffff;
-    border: none;
-    color: #0d1527;
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    color: #0f172a;
     padding: 10px 14px;
     border-radius: 8px;
     outline: none;
     font-size: 0.85rem;
     font-weight: 600;
+}
+
+.control-box select:focus,
+.control-box input:focus {
+    border-color: #ff6b00;
 }
 
 .action-buttons {
@@ -163,28 +165,35 @@ body {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #e65c00, #f9d423);
-    background: #2b7fff;
+    background: #ff6b00;
     color: #ffffff;
-    box-shadow: 0 0 15px rgba(43, 127, 255, 0.4);
+    box-shadow: 0 4px 12px rgba(255, 107, 0, 0.25);
+}
+
+.btn-primary:hover {
+    background: #e05d00;
 }
 
 .btn-secondary {
-    background: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: #f1f5f9;
+    color: #334155;
+    border: 1px solid #cbd5e1;
 }
 
 .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: #e2e8f0;
 }
 
 .btn-accent {
-    background: #2b7fff;
+    background: #ff6b00;
     color: #ffffff;
-    box-shadow: 0 0 12px rgba(43, 127, 255, 0.5);
     border-radius: 20px;
     padding: 8px 18px;
+    box-shadow: 0 4px 10px rgba(255, 107, 0, 0.2);
+}
+
+.btn-accent:hover {
+    background: #e05d00;
 }
 
 .btn-large {
@@ -196,10 +205,10 @@ body {
 /* CARD SECTIONS & TABLES */
 .card-section {
     background: #ffffff;
-    border-radius: 18px;
+    border-radius: 16px;
     padding: 24px;
-    color: #000000;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
 }
 
 .card-header {
@@ -210,8 +219,8 @@ body {
 }
 
 .card-section h3, .card-section h2 {
-    font-size: 1.3rem;
-    color: #0b1528;
+    font-size: 1.2rem;
+    color: #0f172a;
     font-weight: 900;
     letter-spacing: 0.5px;
 }
@@ -225,17 +234,17 @@ body {
     border-collapse: separate;
     border-spacing: 0;
     text-align: left;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
 }
 
 .report-table th {
-    background: #0d1c38;
-    color: #ffffff;
+    background: #fff5ed;
+    color: #ff6b00;
     font-weight: 800;
     padding: 12px 16px;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     letter-spacing: 0.5px;
-    text-align: center;
+    border-bottom: 2px solid #ffd8bf;
 }
 
 .report-table th:first-child { border-top-left-radius: 8px; border-bottom-left-radius: 8px; }
@@ -243,17 +252,19 @@ body {
 
 .report-table td {
     padding: 12px 16px;
-    border-bottom: 1px solid #e2e8f0;
-    color: #1e293b;
-    font-weight: 700;
-    text-align: center;
+    border-bottom: 1px solid #f1f5f9;
+    color: #334155;
+    font-weight: 600;
 }
 
-.report-table td:nth-child(1) { color: #ff7300; }
+.report-table td:nth-child(1) { 
+    color: #ff6b00; 
+    font-weight: 800;
+}
 
 .report-table td input[type="text"] {
     width: 100%;
-    background: #f1f5f9;
+    background: #f8fafc;
     border: 1px solid #cbd5e1;
     color: #0f172a;
     padding: 6px 10px;
@@ -261,10 +272,15 @@ body {
     font-weight: 600;
 }
 
+.report-table td input[type="text"]:focus {
+    border-color: #ff6b00;
+    outline: none;
+}
+
 .report-table td input[type="checkbox"] {
     width: 18px;
     height: 18px;
-    accent-color: #2b7fff;
+    accent-color: #ff6b00;
     cursor: pointer;
 }
 
@@ -276,25 +292,48 @@ body {
     margin-top: 10px;
 }
 
+.total-card {
+    background: #fff5ed;
+    border: 1px solid #ffd8bf;
+    padding: 16px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.total-card span {
+    font-size: 0.75rem;
+    color: #64748b;
+    font-weight: 700;
+}
+
+.total-card strong {
+    font-size: 1.4rem;
+    color: #ff6b00;
+}
+
 .grand-total-card {
     margin-top: 24px;
-    background: linear-gradient(135deg, #0d1c38, #1a2b4c);
+    background: linear-gradient(135deg, #ff6b00, #ff8533);
     padding: 20px 28px;
-    border-radius: 12px;
+    border-radius: 14px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: #ffffff;
+    box-shadow: 0 6px 16px rgba(255, 107, 0, 0.3);
 }
 
 .grand-total-card span {
     font-weight: 800;
     letter-spacing: 1px;
+    font-size: 0.9rem;
 }
 
 .grand-total-card strong {
     font-size: 2.2rem;
-    color: #ff7300;
+    color: #ffffff;
 }
 
 .save-area {
