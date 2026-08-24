@@ -4,25 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conquerors Sunday Report</title>
-    <link rel="stylesheet" href="sunday-report.css">
+    <link rel="stylesheet" href="sunday-report.css?v=3">
 </head>
 <body>
 
     <div class="page-container">
         <!-- TOPBAR -->
-        <header class="topbar">
-            <a href="index.html" class="back-button">← BACK TO DASHBOARD</a>
-            <div class="page-brand">
-                <span>CONQUERORS</span>
-                <strong>SUNDAY ATTENDANCE REPORT</strong>
+        <header class="header-actions">
+            <a href="index.html" class="back-link">← BACK TO DASHBOARD</a>
+            <div class="branding">
+                <span class="brand-sub">CONQUERORS</span>
+                <span class="brand-title">SUNDAY ATTENDANCE REPORT</span>
             </div>
         </header>
 
         <!-- PAGE HEADING -->
-        <section class="page-heading">
-            <div class="orange-line"></div>
-            <h1 id="reportTitle">REPORT ON SUNDAY</h1>
-            <p>CONQUERORS INTERNATIONAL CHURCH</p>
+        <section class="title-container">
+            <div class="accent-line"></div>
+            <h1 id="reportTitle">REPORT ON AUGUST 16, 2026</h1>
+            <p class="church-sub">CONQUERORS INTERNATIONAL CHURCH</p>
         </section>
 
         <!-- CONTROL PANEL -->
@@ -43,10 +43,10 @@
         </section>
 
         <!-- PASTORS SECTION -->
-        <section class="table-section">
-            <div class="section-header">
+        <section class="card-section">
+            <div class="card-header">
                 <h3>PASTORS</h3>
-                <button type="button" id="addPastorButton" class="btn btn-small">+ ADD PASTOR</button>
+                <button type="button" id="addPastorButton" class="btn btn-accent">+ ADD PASTOR</button>
             </div>
             <div class="table-wrapper">
                 <table class="report-table">
@@ -64,10 +64,10 @@
         </section>
 
         <!-- ADULTS SECTION -->
-        <section class="table-section">
-            <div class="section-header">
+        <section class="card-section">
+            <div class="card-header">
                 <h3>ADULTS</h3>
-                <button type="button" id="addAdultButton" class="btn btn-small">+ ADD ADULT</button>
+                <button type="button" id="addAdultButton" class="btn btn-accent">+ ADD ADULT</button>
             </div>
             <div class="table-wrapper">
                 <table class="report-table">
@@ -90,10 +90,10 @@
         </section>
 
         <!-- KIDS SECTION -->
-        <section class="table-section">
-            <div class="section-header">
+        <section class="card-section">
+            <div class="card-header">
                 <h3>KIDS</h3>
-                <button type="button" id="addKidButton" class="btn btn-small">+ ADD KID</button>
+                <button type="button" id="addKidButton" class="btn btn-accent">+ ADD KID</button>
             </div>
             <div class="table-wrapper">
                 <table class="report-table">
@@ -116,7 +116,7 @@
         </section>
 
         <!-- PRIMARY 12 (WOMEN) -->
-        <section class="table-section">
+        <section class="card-section">
             <h3>PRIMARY 12 (WOMEN)</h3>
             <div class="table-wrapper">
                 <table class="report-table">
@@ -133,7 +133,7 @@
         </section>
 
         <!-- PRIMARY 12 (MEN) -->
-        <section class="table-section">
+        <section class="card-section">
             <h3>PRIMARY 12 (MEN)</h3>
             <div class="table-wrapper">
                 <table class="report-table">
@@ -150,7 +150,7 @@
         </section>
 
         <!-- 144 LEADERS (WOMEN) -->
-        <section class="table-section">
+        <section class="card-section">
             <h3>144 LEADERS (WOMEN)</h3>
             <div class="table-wrapper">
                 <table class="report-table">
@@ -167,7 +167,7 @@
         </section>
 
         <!-- 144 LEADERS (MEN) -->
-        <section class="table-section">
+        <section class="card-section">
             <h3>144 LEADERS (MEN)</h3>
             <div class="table-wrapper">
                 <table class="report-table">
@@ -184,14 +184,14 @@
         </section>
 
         <!-- SUMMARY TOTALS -->
-        <section class="totals-section">
+        <section class="card-section">
             <h2>CATEGORY BREAKDOWN</h2>
-            <div class="category-totals-grid" id="categoryTotalsGrid"></div>
+            <div class="totals-grid" id="categoryTotalsGrid"></div>
 
-            <h2 class="section-title-margin">TIMERS BREAKDOWN</h2>
+            <h2 style="margin-top:24px;">TIMERS BREAKDOWN</h2>
             <div class="totals-grid" id="totalsGrid"></div>
 
-            <div class="grand-total">
+            <div class="grand-total-card">
                 <span>GRAND TOTAL ATTENDANCE</span>
                 <strong id="grandTotal">0</strong>
             </div>
@@ -199,7 +199,7 @@
 
         <!-- SAVE BUTTON AREA -->
         <div class="save-area">
-            <button type="button" id="bottomSaveButton" class="save-button">SAVE REPORT</button>
+            <button type="button" id="bottomSaveButton" class="btn btn-primary btn-large">SAVE REPORT</button>
         </div>
     </div>
 
