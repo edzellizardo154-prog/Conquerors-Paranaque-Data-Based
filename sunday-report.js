@@ -8,8 +8,12 @@ const STORAGE_KEY = "conquerors_sunday_reports";
    PERMANENT MEMBERS
 ========================================================= */
 
+const PERMANENT_PASTORS = [
+    "Pas. Efren Bautista",
+    "Pas. Cristina Bautista"
+];
+
 const PRIMARY_WOMEN = [
-    "Pas. Cristina Bautista",
     "Grace Anne Piol",
     "Angela Mae Pamaos",
     "Shiela May Gaviola",
@@ -27,7 +31,6 @@ const PRIMARY_WOMEN = [
 ];
 
 const PRIMARY_MEN = [
-    "Pas. Efren Bautista",
     "Marc Joseph Fonclara",
     "Mark Brian Venzuela",
     "Adrian Dawa",
@@ -74,12 +77,15 @@ const TIMER_LABELS = ["1ST TIMER", "2ND TIMER", "3RD TIMER", "4TH TIMER", "NEW N
 const reportDate = document.getElementById("reportDate");
 const dateSearch = document.getElementById("dateSearch");
 const reportTitle = document.getElementById("reportTitle");
+const pastorsBody = document.getElementById("pastorsBody");
 const adultsBody = document.getElementById("adultsBody");
 const kidsBody = document.getElementById("kidsBody");
 const primaryWomenBody = document.getElementById("primaryWomenBody");
 const primaryMenBody = document.getElementById("primaryMenBody");
 const leadersWomenBody = document.getElementById("leadersWomenBody");
 const leadersMenBody = document.getElementById("leadersMenBody");
+
+const categoryTotalsGrid = document.getElementById("categoryTotalsGrid");
 const totalsGrid = document.getElementById("totalsGrid");
 const grandTotal = document.getElementById("grandTotal");
 
@@ -157,36 +163,21 @@ function generateSundays() {
 function createEmptyReport(date) {
     return {
         date: date,
+        pastors: PERMANENT_PASTORS.map(name => createPerson(name, "Pastors")),
         adults: [],
         kids: [],
-        primaryWomen: PRIMARY_WOMEN.map(name => createPermanentPerson(name, "Primary 12 Women")),
-        primaryMen: PRIMARY_MEN.map(name => createPermanentPerson(name, "Primary 12 Men")),
-        leadersWomen: LEADERS_WOMEN.map(name => createPermanentPerson(name, "144 Leaders Women")),
-        leadersMen: LEADERS_MEN.map(name => createPermanentPerson(name, "144 Leaders Men"))
+        primaryWomen: PRIMARY_WOMEN.map(name => createPerson(name, "Primary 12 Women")),
+        primaryMen: PRIMARY_MEN.map(name => createPerson(name, "Primary 12 Men")),
+        leadersWomen: LEADERS_WOMEN.map(name => createPerson(name, "144 Leaders Women")),
+        leadersMen: LEADERS_MEN.map(name => createPerson(name, "144 Leaders Men"))
     };
 }
 
-function createPermanentPerson(name, category) {
+function createPerson(name, category) {
     return {
         id: createId(),
         category: category,
         name: name,
-        timers: {
-            first: false,
-            second: false,
-            third: false,
-            fourth: false,
-            newNth: false,
-            nt: false
-        }
-    };
-}
-
-function createAdultOrKid(category) {
-    return {
-        id: createId(),
-        category: category,
-        name: "",
         timers: {
             first: false,
             second: false,
@@ -212,12 +203,31 @@ function loadReport(date) {
 
     const report = reports[date];
 
+    // Cleanup
+    if (report.primaryWomen) {
+        report.primaryWomen = report.primaryWomen.filter(p => p.name !== "Pas. Cristina Bautista");
+    }
+    if (report.primaryMen) {
+        report.primaryMen = report.primaryMen.filter(p => p.name !== "Pas. Efren Bautista");
+    }
+
+    if (!report.pastors || report.pastors.length === 0) {
+        report.pastors = PERMANENT_PASTORS.map(name => createPerson(name, "Pastors"));
+    } else {
+        PERMANENT_PASTORS.forEach(pastorName => {
+            const exists = report.pastors.some(p => p.name === pastorName);
+            if (!exists) {
+                report.pastors.unshift(createPerson(pastorName, "Pastors"));
+            }
+        });
+    }
+
     report.adults = report.adults || [];
     report.kids = report.kids || [];
-    report.primaryWomen = report.primaryWomen || PRIMARY_WOMEN.map(name => createPermanentPerson(name, "Primary 12 Women"));
-    report.primaryMen = report.primaryMen || PRIMARY_MEN.map(name => createPermanentPerson(name, "Primary 12 Men"));
-    report.leadersWomen = report.leadersWomen || LEADERS_WOMEN.map(name => createPermanentPerson(name, "144 Leaders Women"));
-    report.leadersMen = report.leadersMen || LEADERS_MEN.map(name => createPermanentPerson(name, "144 Leaders Men"));
+    report.primaryWomen = report.primaryWomen || PRIMARY_WOMEN.map(name => createPerson(name, "Primary 12 Women"));
+    report.primaryMen = report.primaryMen || PRIMARY_MEN.map(name => createPerson(name, "Primary 12 Men"));
+    report.leadersWomen = report.leadersWomen || LEADERS_WOMEN.map(name => createPerson(name, "144 Leaders Women"));
+    report.leadersMen = report.leadersMen || LEADERS_MEN.map(name => createPerson(name, "144 Leaders Men"));
 
     return report;
 }
@@ -245,10 +255,10 @@ function renderReport(date) {
 
     reportTitle.textContent = "REPORT ON " + formatDate(date).toUpperCase();
 
+    renderPeople(pastorsBody, report.pastors, true, false);
     renderPeople(adultsBody, report.adults, true, true);
     renderPeople(kidsBody, report.kids, true, true);
     
-    // Regular Leaders Tables - ONLY NT TIMER (fullTimers = false)
     renderPeople(primaryWomenBody, report.primaryWomen, false, false);
     renderPeople(primaryMenBody, report.primaryMen, false, false);
     renderPeople(leadersWomenBody, report.leadersWomen, false, false);
@@ -261,7 +271,7 @@ function renderPeople(container, people, editable, fullTimers) {
     if (!container) return;
 
     if (!people || people.length === 0) {
-        const cols = editable ? 9 : (fullTimers ? 8 : 3);
+        const cols = editable ? (fullTimers ? 9 : 4) : (fullTimers ? 8 : 3);
         container.innerHTML = `
             <tr>
                 <td colspan="${cols}">
@@ -274,7 +284,9 @@ function renderPeople(container, people, editable, fullTimers) {
 
     container.innerHTML = people
         .map(person => {
-            const nameCell = editable
+            const isPermanentPastor = PERMANENT_PASTORS.includes(person.name);
+            
+            const nameCell = (editable && !isPermanentPastor)
                 ? `
                     <input
                         class="name-input"
@@ -290,19 +302,20 @@ function renderPeople(container, people, editable, fullTimers) {
             const removeCell = editable
                 ? `
                     <td>
-                        <button
-                            type="button"
-                            class="remove-button"
-                            data-remove-id="${person.id}"
-                            title="Remove"
-                        >
-                            ×
-                        </button>
+                        ${!isPermanentPastor ? `
+                            <button
+                                type="button"
+                                class="remove-button"
+                                data-remove-id="${person.id}"
+                                title="Remove"
+                            >
+                                ×
+                            </button>
+                        ` : ''}
                     </td>
                 `
                 : "";
 
-            // Render Full Timer columns vs NT Timer Only
             const timerCells = fullTimers
                 ? `
                     ${renderTimerCell(person, "first")}
@@ -346,15 +359,21 @@ function renderTimerCell(person, timer) {
    EVENTS & ACTIONS
 ========================================================= */
 
+document.getElementById("addPastorButton").addEventListener("click", function () {
+    const report = loadReport(reportDate.value);
+    report.pastors.push(createPerson("", "Pastors"));
+    updateCurrentReport(report);
+});
+
 document.getElementById("addAdultButton").addEventListener("click", function () {
     const report = loadReport(reportDate.value);
-    report.adults.push(createAdultOrKid("Adults"));
+    report.adults.push(createPerson("", "Adults"));
     updateCurrentReport(report);
 });
 
 document.getElementById("addKidButton").addEventListener("click", function () {
     const report = loadReport(reportDate.value);
-    report.kids.push(createAdultOrKid("Kids"));
+    report.kids.push(createPerson("", "Kids"));
     updateCurrentReport(report);
 });
 
@@ -405,6 +424,7 @@ document.addEventListener("click", function (event) {
     const id = event.target.dataset.removeId;
     const report = loadReport(reportDate.value);
 
+    report.pastors = report.pastors.filter(person => person.id !== id);
     report.adults = report.adults.filter(person => person.id !== id);
     report.kids = report.kids.filter(person => person.id !== id);
 
@@ -413,6 +433,7 @@ document.addEventListener("click", function (event) {
 
 function findPerson(report, id) {
     const groups = [
+        report.pastors,
         report.adults,
         report.kids,
         report.primaryWomen,
@@ -434,8 +455,53 @@ function findPerson(report, id) {
    CALCULATIONS & TOTALS
 ========================================================= */
 
+function countGroupTotal(group) {
+    if (!group) return 0;
+    let count = 0;
+    group.forEach(person => {
+        if (!person.name || !person.name.trim()) return;
+        const hasChecked = TIMER_KEYS.some(timer => person.timers && person.timers[timer]);
+        if (hasChecked) {
+            count++;
+        }
+    });
+    return count;
+}
+
 function calculateTotals(report) {
+    // 1. Group / Category Totals
+    const pastorsTotal = countGroupTotal(report.pastors);
+    const adultsTotal = countGroupTotal(report.adults);
+    const kidsTotal = countGroupTotal(report.kids);
+    const primaryTotal = countGroupTotal(report.primaryWomen) + countGroupTotal(report.primaryMen);
+    const leadersTotal = countGroupTotal(report.leadersWomen) + countGroupTotal(report.leadersMen);
+
+    categoryTotalsGrid.innerHTML = `
+        <div class="category-total-card">
+            <span>PASTORS</span>
+            <strong>${pastorsTotal}</strong>
+        </div>
+        <div class="category-total-card">
+            <span>ADULTS</span>
+            <strong>${adultsTotal}</strong>
+        </div>
+        <div class="category-total-card">
+            <span>KIDS</span>
+            <strong>${kidsTotal}</strong>
+        </div>
+        <div class="category-total-card">
+            <span>PRIMARY 12</span>
+            <strong>${primaryTotal}</strong>
+        </div>
+        <div class="category-total-card">
+            <span>144 LEADERS</span>
+            <strong>${leadersTotal}</strong>
+        </div>
+    `;
+
+    // 2. Timers Breakdown Totals
     const allPeople = [
+        ...(report.pastors || []),
         ...(report.adults || []),
         ...(report.kids || []),
         ...(report.primaryWomen || []),
@@ -474,6 +540,7 @@ function calculateTotals(report) {
 function executeSave() {
     const report = loadReport(reportDate.value);
 
+    report.pastors = report.pastors.filter(person => person.name && person.name.trim());
     report.adults = report.adults.filter(person => person.name && person.name.trim());
     report.kids = report.kids.filter(person => person.name && person.name.trim());
 
@@ -487,7 +554,15 @@ document.getElementById("bottomSaveButton").addEventListener("click", executeSav
 
 document.getElementById("copySummaryButton").addEventListener("click", function () {
     const report = loadReport(reportDate.value);
+
+    const pastorsTotal = countGroupTotal(report.pastors);
+    const adultsTotal = countGroupTotal(report.adults);
+    const kidsTotal = countGroupTotal(report.kids);
+    const primaryTotal = countGroupTotal(report.primaryWomen) + countGroupTotal(report.primaryMen);
+    const leadersTotal = countGroupTotal(report.leadersWomen) + countGroupTotal(report.leadersMen);
+
     const allPeople = [
+        ...(report.pastors || []),
         ...(report.adults || []),
         ...(report.kids || []),
         ...(report.primaryWomen || []),
@@ -511,6 +586,14 @@ document.getElementById("copySummaryButton").addEventListener("click", function 
 `📊 *CONQUERORS SUNDAY REPORT* 📊
 📅 Date: ${formatDate(report.date)}
 
+👥 *CATEGORY BREAKDOWN*
+• Pastors: ${pastorsTotal}
+• Adults: ${adultsTotal}
+• Kids: ${kidsTotal}
+• Primary 12: ${primaryTotal}
+• 144 Leaders: ${leadersTotal}
+
+⏱️ *TIMERS BREAKDOWN*
 • 1st Timers: ${totals.first}
 • 2nd Timers: ${totals.second}
 • 3rd Timers: ${totals.third}
