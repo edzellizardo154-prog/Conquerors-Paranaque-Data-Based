@@ -82,6 +82,8 @@ let selectedGroup = null;
 /* =========================================
    DOM
 ========================================= */
+const celebrationSearch =
+    document.getElementById("celebrationSearch");
 
 const celebrationDate =
     document.getElementById("celebrationDate");
@@ -112,6 +114,9 @@ const dataSummary =
 
 const dataTitle =
     document.getElementById("dataTitle");
+
+const exportExcelButton =
+    document.getElementById("exportExcelButton");
 
 const closeDataButton =
     document.getElementById("closeDataButton");
@@ -229,52 +234,46 @@ function getReportingWindow(celebration) {
 
 }
 
-
 /* =========================================
-   SUNDAYS
+   SUNDAYS (FROM 1ST SUNDAY OF JAN 2025 TO LAST SUNDAY OF DEC 2028)
 ========================================= */
 
-function getUpcomingSundays(count = 16) {
+function getUpcomingSundays() {
 
     const result = [];
 
-    const today = new Date();
+    // 1. Kunin ang 1st Sunday ng January 2025
+    const startSunday = new Date(2025, 0, 1);
 
-    today.setHours(
-        0,
-        0,
-        0,
-        0
-    );
-
-    const day = today.getDay();
-
-    const daysUntilSunday =
-        (7 - day) % 7;
-
-    const firstSunday =
-        new Date(today);
-
-    firstSunday.setDate(
-        today.getDate() +
-        daysUntilSunday
-    );
-
-    for (
-        let i = 0;
-        i < count;
-        i++
-    ) {
-
-        const sunday =
-            new Date(firstSunday);
-
-        sunday.setDate(
-            firstSunday.getDate() +
-            (i * 7)
+    while (startSunday.getDay() !== 0) {
+        startSunday.setDate(
+            startSunday.getDate() + 1
         );
+    }
 
-        result.push(sunday);
+    startSunday.setHours(0, 0, 0, 0);
+
+    // 2. Kunin ang Huling Sunday ng December 2028
+    const endSunday = new Date(2028, 11, 31);
+
+    while (endSunday.getDay() !== 0) {
+        endSunday.setDate(
+            endSunday.getDate() - 1
+        );
+    }
+
+    endSunday.setHours(0, 0, 0, 0);
+
+    // 3. I-generate ang lahat ng Sunday mula Jan 2025 hanggang Dec 2028
+    const currentSunday = new Date(startSunday);
+
+    while (currentSunday <= endSunday) {
+
+        result.push(new Date(currentSunday));
+
+        currentSunday.setDate(
+            currentSunday.getDate() + 7
+        );
 
     }
 
@@ -282,42 +281,60 @@ function getUpcomingSundays(count = 16) {
 
 }
 
-
 /* =========================================
    CELEBRATIONS
 ========================================= */
 
+/* =========================================
+   CELEBRATIONS & SEARCH FILTER
+========================================= */
+
+let allSundays = [];
+
 function loadCelebrations() {
+
+    allSundays = getUpcomingSundays();
+    filterCelebrations("");
+
+}
+
+
+function filterCelebrations(filterQuery = "") {
+
+    const query = filterQuery.toLowerCase().trim();
+    const currentValue = celebrationDate.value;
 
     celebrationDate.innerHTML = "";
 
-    const sundays =
-        getUpcomingSundays();
+    const filteredSundays = allSundays.filter(sunday => {
+        const title = getCelebrationTitle(sunday).toLowerCase();
+        return title.includes(query);
+    });
 
-    sundays.forEach(
-        (sunday, index) => {
+    if (filteredSundays.length === 0) {
 
-            const option =
-                document.createElement("option");
+        const option = document.createElement("option");
+        option.value = "";
+        option.textContent = "NO DATE FOUND";
+        celebrationDate.appendChild(option);
 
-            option.value =
-                dateKey(sunday);
+    } else {
 
-            option.textContent =
-                getCelebrationTitle(sunday);
+        filteredSundays.forEach((sunday, index) => {
 
-            if (index === 0) {
+            const option = document.createElement("option");
+            option.value = dateKey(sunday);
+            option.textContent = getCelebrationTitle(sunday);
 
+            if (dateKey(sunday) === currentValue) {
                 option.selected = true;
-
             }
 
-            celebrationDate.appendChild(
-                option
-            );
+            celebrationDate.appendChild(option);
 
-        }
-    );
+        });
+
+    }
 
     updateCelebration();
 
@@ -325,6 +342,15 @@ function loadCelebrations() {
 
 
 function updateCelebration() {
+
+    if (!celebrationDate.value) {
+        celebrationInfo.innerHTML = `
+            <div class="info-card">
+                <strong>NO DATE SELECTED</strong>
+            </div>
+        `;
+        return;
+    }
 
     selectedCelebration =
         new Date(
@@ -361,7 +387,6 @@ function updateCelebration() {
     renderLeaderResults();
 
 }
-
 
 /* =========================================
    REPORT KEY
@@ -2000,3 +2025,147 @@ document
 ========================================= */
 
 loadCelebrations();
+
+/* =========================================
+   SEARCH DATE EVENT LISTENER
+========================================= */
+
+if (celebrationSearch) {
+
+    celebrationSearch.addEventListener("input", (e) => {
+        filterCelebrations(e.target.value);
+    });
+
+}
+
+/* =========================================
+   EXPORT TO EXCEL FUNCTION
+========================================= */
+
+function exportToExcel() {
+
+    if (!selectedCelebration) {
+        alert("Please select a celebration date first.");
+        return;
+    }
+
+    const titleText = getCelebrationTitle(selectedCelebration);
+
+    // Header structure na kaparehas ng View Data
+    const excelData = [
+        [titleText],
+        [],
+        ["NETWORK LEADER", "STATUS", "1st", "2nd", "3rd", "4th", "NEW NTH", "Nth", "NL", "TOTAL"]
+    ];
+
+    const categories = ["first", "second", "third", "fourth", "newNth", "nt", "nl"];
+
+    // GIRLS Section
+    excelData.push(["GIRLS", "", "", "", "", "", "", "", "", ""]);
+
+    let womenTotals = { first: 0, second: 0, third: 0, fourth: 0, newNth: 0, nt: 0, nl: 0, total: 0 };
+
+    WOMEN_LEADERS.forEach(leader => {
+        const report = getLeaderReport("women", leader);
+        const status = report ? "REPORTED" : "NO REPORT";
+        const row = [leader, status];
+
+        let leaderTotal = 0;
+        categories.forEach(cat => {
+            const names = report?.[cat] || [];
+            const count = countNames(names);
+            const namesList = Array.isArray(names) && names.length > 0 ? names.join(", ") : "-";
+            row.push(namesList);
+            womenTotals[cat] += count;
+            leaderTotal += count;
+        });
+
+        row.push(leaderTotal);
+        womenTotals.total += leaderTotal;
+        excelData.push(row);
+    });
+
+    excelData.push([
+        "WOMEN'S TOTAL", "",
+        womenTotals.first, womenTotals.second, womenTotals.third, womenTotals.fourth,
+        womenTotals.newNth, womenTotals.nt, womenTotals.nl, womenTotals.total
+    ]);
+
+    // BOYS Section
+    excelData.push(["BOYS", "", "", "", "", "", "", "", "", ""]);
+
+    let menTotals = { first: 0, second: 0, third: 0, fourth: 0, newNth: 0, nt: 0, nl: 0, total: 0 };
+
+    MEN_LEADERS.forEach(leader => {
+        const report = getLeaderReport("men", leader);
+        const status = report ? "REPORTED" : "NO REPORT";
+        const row = [leader, status];
+
+        let leaderTotal = 0;
+        categories.forEach(cat => {
+            const names = report?.[cat] || [];
+            const count = countNames(names);
+            const namesList = Array.isArray(names) && names.length > 0 ? names.join(", ") : "-";
+            row.push(namesList);
+            menTotals[cat] += count;
+            leaderTotal += count;
+        });
+
+        row.push(leaderTotal);
+        menTotals.total += leaderTotal;
+        excelData.push(row);
+    });
+
+    excelData.push([
+        "MEN'S TOTAL", "",
+        menTotals.first, menTotals.second, menTotals.third, menTotals.fourth,
+        menTotals.newNth, menTotals.nt, menTotals.nl, menTotals.total
+    ]);
+
+    // GRAND TOTAL
+    excelData.push([
+        "GRAND TOTAL", "",
+        womenTotals.first + menTotals.first,
+        womenTotals.second + menTotals.second,
+        womenTotals.third + menTotals.third,
+        womenTotals.fourth + menTotals.fourth,
+        womenTotals.newNth + menTotals.newNth,
+        womenTotals.nt + menTotals.nt,
+        womenTotals.nl + menTotals.nl,
+        womenTotals.total + menTotals.total
+    ]);
+
+    // Create Worksheet & Workbook
+    const worksheet = XLSX.utils.aoa_to_sheet(excelData);
+
+    // Set Column Widths para maayos tingnan sa Excel
+    worksheet["!cols"] = [
+        { wch: 28 }, // Network Leader
+        { wch: 14 }, // Status
+        { wch: 25 }, // 1st
+        { wch: 25 }, // 2nd
+        { wch: 25 }, // 3rd
+        { wch: 25 }, // 4th
+        { wch: 25 }, // NEW NTH
+        { wch: 25 }, // Nth
+        { wch: 25 }, // NL
+        { wch: 10 }  // TOTAL
+    ];
+
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Celebration Data");
+
+    // Download File
+    const fileName = `${titleText.replace(/[^a-zA-Z0-9]/g, "_")}_Report.xlsx`;
+    XLSX.writeFile(workbook, fileName);
+
+}
+
+
+/* =========================================
+   EXPORT BUTTON EVENT LISTENER
+========================================= */
+
+if (exportExcelButton) {
+    exportExcelButton.addEventListener("click", exportToExcel);
+}
