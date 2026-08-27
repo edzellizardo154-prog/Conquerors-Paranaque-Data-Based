@@ -203,7 +203,6 @@ function loadReport(date) {
 
     const report = reports[date];
 
-    // Cleanup
     if (report.primaryWomen) {
         report.primaryWomen = report.primaryWomen.filter(p => p.name !== "Pas. Cristina Bautista");
     }
@@ -469,7 +468,6 @@ function countGroupTotal(group) {
 }
 
 function calculateTotals(report) {
-    // 1. Group / Category Totals
     const pastorsTotal = countGroupTotal(report.pastors);
     const adultsTotal = countGroupTotal(report.adults);
     const kidsTotal = countGroupTotal(report.kids);
@@ -499,7 +497,6 @@ function calculateTotals(report) {
         </div>
     `;
 
-    // 2. Timers Breakdown Totals
     const allPeople = [
         ...(report.pastors || []),
         ...(report.adults || []),
@@ -609,6 +606,128 @@ document.getElementById("copySummaryButton").addEventListener("click", function 
 });
 
 /* =========================================================
+   EXPORT TO EXCEL
+========================================================= */
+
+const exportBtn = document.getElementById("exportExcelButton");
+if (exportBtn) {
+    exportBtn.addEventListener("click", function () {
+        const currentDate = reportDate.value;
+        const report = loadReport(currentDate);
+
+        let reportData = [];
+
+        reportData.push(["CONQUERORS INTERNATIONAL CHURCH"]);
+        reportData.push([`SUNDAY ATTENDANCE REPORT — ${formatDate(currentDate).toUpperCase()}`]);
+        reportData.push([]);
+
+        const sections = [
+            { title: "PASTORS", data: report.pastors, fullTimers: false },
+            { title: "ADULTS", data: report.adults, fullTimers: true },
+            { title: "KIDS", data: report.kids, fullTimers: true },
+            { title: "PRIMARY 12 (WOMEN)", data: report.primaryWomen, fullTimers: false },
+            { title: "PRIMARY 12 (MEN)", data: report.primaryMen, fullTimers: false },
+            { title: "144 LEADERS (WOMEN)", data: report.leadersWomen, fullTimers: false },
+            { title: "144 LEADERS (MEN)", data: report.leadersMen, fullTimers: false }
+        ];
+
+        let grandTotalCount = 0;
+        let categoryTotals = { pastors: 0, adults: 0, kids: 0, primary: 0, leaders: 0 };
+        let timerTotals = { first: 0, second: 0, third: 0, fourth: 0, newNth: 0, nt: 0 };
+
+        sections.forEach(sec => {
+            const validData = sec.data.filter(p => p.name && p.name.trim());
+            let sectionCount = 0;
+
+            reportData.push([sec.title]);
+
+            if (sec.fullTimers) {
+                reportData.push(["CATEGORY", "NAME", "1ST TIMER", "2ND TIMER", "3RD TIMER", "4TH TIMER", "NEW NT TIMER", "NT TIMER"]);
+                validData.forEach(p => {
+                    const hasCheck = TIMER_KEYS.some(t => p.timers && p.timers[t]);
+                    if (hasCheck) sectionCount++;
+
+                    TIMER_KEYS.forEach(t => {
+                        if (p.timers && p.timers[t]) timerTotals[t]++;
+                    });
+
+                    reportData.push([
+                        p.category,
+                        p.name,
+                        p.timers?.first ? "✓" : "",
+                        p.timers?.second ? "✓" : "",
+                        p.timers?.third ? "✓" : "",
+                        p.timers?.fourth ? "✓" : "",
+                        p.timers?.newNth ? "✓" : "",
+                        p.timers?.nt ? "✓" : ""
+                    ]);
+                });
+
+                reportData.push(["SUBTOTAL (" + sec.title + ")", "", "", "", "", "", "", sectionCount]);
+            } else {
+                reportData.push(["CATEGORY", "NAME", "NT TIMER"]);
+                validData.forEach(p => {
+                    const hasCheck = p.timers && p.timers.nt;
+                    if (hasCheck) {
+                        sectionCount++;
+                        timerTotals.nt++;
+                    }
+
+                    reportData.push([
+                        p.category,
+                        p.name,
+                        p.timers?.nt ? "✓" : ""
+                    ]);
+                });
+
+                reportData.push(["SUBTOTAL (" + sec.title + ")", "", sectionCount]);
+            }
+
+            if (sec.title.includes("PASTORS")) categoryTotals.pastors += sectionCount;
+            else if (sec.title.includes("ADULTS")) categoryTotals.adults += sectionCount;
+            else if (sec.title.includes("KIDS")) categoryTotals.kids += sectionCount;
+            else if (sec.title.includes("PRIMARY")) categoryTotals.primary += sectionCount;
+            else if (sec.title.includes("LEADERS")) categoryTotals.leaders += sectionCount;
+
+            grandTotalCount += sectionCount;
+            reportData.push([]);
+        });
+
+        reportData.push(["SUMMARY & CATEGORY BREAKDOWN", "ATTENDANCE COUNT"]);
+        reportData.push(["Pastors", categoryTotals.pastors]);
+        reportData.push(["Adults", categoryTotals.adults]);
+        reportData.push(["Kids", categoryTotals.kids]);
+        reportData.push(["Primary 12", categoryTotals.primary]);
+        reportData.push(["144 Leaders", categoryTotals.leaders]);
+        reportData.push([]);
+
+        reportData.push(["TIMERS BREAKDOWN", "COUNT"]);
+        reportData.push(["1st Timers", timerTotals.first]);
+        reportData.push(["2nd Timers", timerTotals.second]);
+        reportData.push(["3rd Timers", timerTotals.third]);
+        reportData.push(["4th Timers", timerTotals.fourth]);
+        reportData.push(["New NT Timers", timerTotals.newNth]);
+        reportData.push(["NT Timers", timerTotals.nt]);
+        reportData.push([]);
+
+        reportData.push(["GRAND TOTAL ATTENDANCE", grandTotalCount]);
+
+        const wb = XLSX.utils.book_new();
+        const ws = XLSX.utils.aoa_to_sheet(reportData);
+
+        ws['!cols'] = [
+            { wch: 25 }, { wch: 30 }, { wch: 14 }, { wch: 14 },
+            { wch: 14 }, { wch: 14 }, { wch: 16 }, { wch: 14 }
+        ];
+
+        XLSX.utils.book_append_sheet(wb, ws, "Attendance Report");
+
+        const filename = `Conquerors_Sunday_Report_${currentDate}.xlsx`;
+        XLSX.writeFile(wb, filename);
+    });
+}
+
+/* =========================================================
    NAVIGATION & SEARCH
 ========================================================= */
 
@@ -649,6 +768,29 @@ document.getElementById("newReportButton").addEventListener("click", function ()
     reportDate.value = nextSunday;
     renderReport(nextSunday);
 });
+
+/* =========================================================
+   BACK TO TOP FLOATING BUTTON FUNCTION
+========================================================= */
+
+const backToTopBtn = document.getElementById("backToTopBtn");
+
+if (backToTopBtn) {
+    window.addEventListener("scroll", function () {
+        if (window.scrollY > 300) {
+            backToTopBtn.classList.add("show");
+        } else {
+            backToTopBtn.classList.remove("show");
+        }
+    });
+
+    backToTopBtn.addEventListener("click", function () {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+}
 
 /* =========================================================
    UTILITIES & INIT
