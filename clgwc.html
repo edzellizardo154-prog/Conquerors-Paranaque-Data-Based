@@ -77,12 +77,27 @@
         </section>
 
 
-
-        <!-- =========================
+   <!-- =========================
              CELEBRATION SELECTOR
         ========================== -->
 
         <section class="control-panel">
+
+
+            <div class="control-box">
+
+                <label for="celebrationSearch">
+                    SEARCH DATE
+                </label>
+
+                <input
+                    type="text"
+                    id="celebrationSearch"
+                    placeholder="e.g., Jan 2025 or Aug 16..."
+                    autocomplete="off"
+                >
+
+            </div>
 
 
             <div class="control-box">
@@ -120,8 +135,6 @@
             </button>
 
         </section>
-
-
 
         <!-- =========================
              CELEBRATION INFO
@@ -173,12 +186,24 @@
                 </div>
 
 
-                <button
-                    id="closeDataButton"
-                    class="close-button"
-                >
-                    CLOSE
-                </button>
+            <div style="display: flex; gap: 10px;">
+
+                    <button
+                        id="exportExcelButton"
+                        class="secondary-button"
+                        style="height: 38px; padding: 0 15px; width: auto;"
+                    >
+                        EXPORT TO EXCEL
+                    </button>
+
+                    <button
+                        id="closeDataButton"
+                        class="close-button"
+                    >
+                        CLOSE
+                    </button>
+
+                </div>
 
             </div>
 
@@ -433,6 +458,8 @@
     </div>
 
 
+<!-- SheetJS Library para sa Excel Export -->
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 
     <script src="clgwc.js"></script>
 
